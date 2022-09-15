@@ -1,0 +1,288 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/*home page*/
+.homepage {
+    display: flex;
+    height: 100%;
+}
+
+
+
+/*left-side navbar*/
+.left-side-navbar {
+
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    justify-content: space-around;
+}
+
+.left-side-navbar>* {
+    padding: 4% 10% 4% 15%;
+}
+
+.logo {
+    width: 28px;
+    height: 23px;
+}
+
+.fix-top {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    height: 70px;
+    display: flex;
+
+}
+
+.searchbar {
+    padding-left: 40%;
+}
+
+.searchbar>input {
+    margin-top: 12px;
+    background-color: rgb(233, 230, 230);
+    border-radius: 20px;
+    width: 290px;
+    height: 42px;
+    border: 0;
+    padding-left: 50px;
+}
+
+/*display tweet*/
+
+.display-tweet {
+    width: 57%;
+    background-color: white;
+
+
+}
+
+.contente {
+
+    overflow-y: auto;
+    display: flex;
+}
+
+/*who to follow */
+.who-to-follow {
+    width: 43%;
+    background-color: white;
+    margin-top: 35px;
+    padding: 1% 1% 2% 2%;
+}
+
+.maybeknow {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.maybeknow>img {
+    width: 27px;
+    height: 27px;
+    border-radius: 50px;
+
+}
+
+
+
+
+
+
+
+/*myprofile*/
+.myprofile {
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+
+
+}
+
+.upper-side-profile {
+    background-color: rgb(233, 230, 230);
+    height: 30vh;
+}
+
+.down-side-profile {
+    position: relative;
+    height: 30vh;
+    padding-top: 7%;
+
+}
+
+.emailimage {
+    width: 20%;
+    position: absolute;
+    bottom: 60%;
+    left: 2%;
+    border-radius: 50px;
+    border: 3px solid white;
+
+}
+
+.lightwrite {
+    font-size: 15px;
+    color: gray;
+}
+
+/*tweet card*/
+.tweet-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 2%;
+    border-top: 1px solid rgb(170, 167, 167);
+    border-right: 1px solid rgb(170, 167, 167);
+    border-left: 1px solid rgb(170, 167, 167);
+
+}
+
+.tweet-card>* {
+    padding-top: 10px;
+}
+
+.tweet-card-top {
+    display: flex;
+}
+
+.user-and-content {
+    margin-left: 2%;
+}
+
+.profile-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+}
+
+.like-button {
+    display: flex;
+    align-items: center;
+}
+
+.like {
+    width: 17px;
+    height: 17px;
+}
+
+.tweet-container-image {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.user-and-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-tweet {
+    display: flex;
+}
+
+.user-tweet>* {
+    margin-left: 5px;
+}
+
+
+/*who to follow*/
+.who-to-follow {
+    margin-top: 70px;
+}
+
+.suggestions {
+    background-color: rgb(233, 230, 230);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+
+/*Utilizes*/
+.btn {
+    height: 40px;
+    width: 90px;
+    border-radius: 20px;
+}
+
+.btn-blue {
+
+    color: white;
+    background-color: rgb(104, 169, 243);
+    font-weight: bold;
+    font-size: 13px;
+    border: 0px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .left-side-navbar {
+        width: 10%;
+    }
+
+    .display-tweet {
+        width: 50%;
+
+    }
+
+    .who-to-follow {
+        width: 40%;
+
+    }
+
+    @media only screen and (max-width: 900px) {
+        .left-side-navbar {
+            width: 10%;
+        }
+
+        .display-tweet {
+            width: 90%;
+        }
+
+        .who-to-follow {
+            width: 0%;
+            display: none;
+
+        }
+
+        .searchbar {
+            display: none;
+        }
+
+
+        .emailimage {
+            width: 15%;
+            position: absolute;
+            bottom: 60%;
+
+
+        }
+    }
+
+    @media only screen and (max-width: 670px) {
+
+        .emailimage {
+            width: 20%;
+            position: absolute;
+            bottom: 75%;
+
+
+        }
+
+
+    }
+}

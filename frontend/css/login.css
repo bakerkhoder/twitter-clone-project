@@ -1,0 +1,229 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+/*styling the login page*/
+.maincontainer {
+    display: flex;
+    flex-flow: column;
+}
+
+.upper_side {
+    display: flex;
+    margin-bottom: 10px;
+    height: 90vh;
+    min-height: 700px;
+}
+
+.footer {
+    margin-top: 17px;
+}
+
+.background>img {
+    display: flex;
+    height: 70%;
+    width: 500px;
+
+}
+
+.background {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    background: url(../images/hero.png);
+    padding: 15px 15px;
+
+}
+
+.background>img {
+    width: 30%;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-width: 437px;
+    max-width: 760px;
+    min-height: 700px;
+    padding: 10px 30px;
+
+}
+
+.login>img {
+    width: 40px;
+
+
+}
+
+.login>h1 {
+    font-size: 60px;
+    padding-top: 20px;
+
+}
+
+.login>h2 {
+    padding-top: 30px;
+}
+
+.login>h5 {
+    padding-top: 20%;
+}
+
+.login>p {
+    font-size: 10px;
+    width: 40%;
+    color: gray;
+    margin-top: 10px;
+}
+
+.login>p>span {
+
+    color: rgb(124, 183, 250);
+}
+
+.btn-blue {
+    color: white;
+    background-color: rgb(104, 169, 243);
+    font-weight: bold;
+    font-size: 13px;
+    border: 0px;
+    margin-top: 30px;
+}
+
+.btn-white {
+    color: rgb(104, 169, 243);
+    background-color: white;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid rgb(104, 169, 243);
+    margin-top: 30px;
+}
+
+.login>input {
+    height: 40px;
+    width: 250px;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding-left: 5%;
+    border: 1px solid gray;
+
+
+}
+
+.footer {
+    padding: 15px 30px;
+    color: rgb(146, 144, 144);
+    font-size: small;
+
+}
+
+.page-mask {
+
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#cancel {
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    width: 40vw;
+    height: 80vh;
+    position: absolute;
+    z-index: 1;
+    left: 35%;
+    top: 20%;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+}
+
+.popup>input {
+    height: 40px;
+    width: 250px;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding-left: 5%;
+    border: 1px solid gray;
+}
+
+.popup>button {
+    margin-left: 15%;
+    margin-top: 20px;
+}
+
+.popup>h4 {
+    margin-top: 10px;
+}
+
+.tallinput {
+    width: 80% !important;
+}
+
+.popup>h5 {
+    margin-top: 10px;
+}
+
+
+
+/*Utilizes*/
+.btn {
+    height: 40px;
+    width: 250px;
+    border-radius: 20px;
+    margin-top: 20px;
+
+}
+
+.display {
+    display: block !important;
+}
+
+.btn>a {
+    text-decoration: none;
+    color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    .mobile {
+        flex-direction: column;
+    }
+
+    .upper_side {
+        flex-direction: column-reverse;
+        min-height: 1000px;
+
+    }
+
+    .background {
+        width: 100vw !important;
+        height: 30vw;
+    }
+
+    .popup {
+        width: 100vw;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: auto;
+        background-color: white;
+    }
+
+    .none {
+        display: none;
+    }
+
+}
