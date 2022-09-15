@@ -17,19 +17,19 @@
             <div>
                 <img class="logo" src="./images/backgroundd.png" alt="">
             </div>
-            <div class="navitem">
-                <div><img class="svg" src="./images/home.png" alt=""></div>
-                <div class="navtext">home</div> 
+            <div class="navitem cursor">
+                <div><a href="./home.html"><img class="svg" src="./images/home.png" alt=""></a></div>
+                <div class="navtext"><a href="./home.html">home</a> </div> 
             </div>
-            <div class="navitem">
+            <div class="navitem cursor">
                  <div><img class="svg" src="./images/profile.png" alt=""></div>
-                 <div  class="navtext" >profile</div>
+                 <div  class="navtext" > profile</div>
             </div>
-            <div class="navitem" id="popupbtn">
-                <button style="width:75%;" class="btn btn-blue"> tweet</button>
+            <div class="navitem cursor" id="popupbtn">
+                <button style="width:75%;" class="btn btn-blue cursor"> tweet</button>
             </div>
-            <div class="navitem">
-                <div><img class="svg" src="./images/account.png" alt=""></div>
+            <div class="navitem cursor">
+                <div><a href="./login.html"><img class="svg" src="./images/account.png" alt=""></a></div>
                 <div  class="navtext" >logout or <br> new account </div>
             </div>
         </section>
@@ -43,7 +43,7 @@
         <div id="rightside" class="contente">
             <div class="fix-top">
                 <div>
-                    <H1>Home</H1>
+                    <H1>username</H1>
                 </div>
                 <div class="searchbar">
 
@@ -64,12 +64,12 @@
                         </div>
                         <div>
                             <div>
-                                <h1>Username</h1>
-                                <p class="lightwrite">email</p>
+                                <h1 class="username">Username</h1>
+                                <p class="lightwrite username">email</p>
                             </div>
                             <div>
-                                <div class="lightwrite">date</div>
-                                <div class="following">
+                                <div class="lightwrite username">date</div>
+                                <div class="following username">
                                     <p class="lightwrite"><span>num</span> following</p>
                                     <p class="lightwrite"><span>num</span> followers</p>
                                 </div>
@@ -110,7 +110,7 @@
                         <div>number</div>
                     </div>
                 </div>
-                <div style="height:1400px ;">
+                <div >
 
                 </div>
             </section>
@@ -168,13 +168,13 @@
             </section>
         </div>
         <div class="popup" id="popup">
-            <p id="cancel">cancel</p>
+            <p id="cancel" class="cursor" ><img class="cancel" src="./images/exit.png" alt=""></p>
         <div class="tweet-container">
             <div class="image-container">
                 <img class="image" src="./images/3.png" alt="">
             </div>
             <div class="input-container">
-                <input placeholder="what is happening" type="text">
+                <input id="" placeholder="what is happening" type="text">
             </div>
         </div>
         <div class="tweet-actions">
@@ -182,7 +182,7 @@
                 <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
             </div>
             <div>
-                <button class="btn btn-blue">Tweet</button>
+                <button class="btn btn-blue cursor"><a href="./profile.html" style="color: white;"> Tweet</a></button>
             </div>
         </div>
         </div>

@@ -201,6 +201,9 @@ a {
 .cursor{
     cursor: pointer;
 }
+.cancel {
+    width: 27px;
+}
 
 @media only screen and (max-width: 800px) {
     .mobile {

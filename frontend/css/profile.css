@@ -276,6 +276,12 @@ body {
 .svg{
     width:23px;
 }
+.cancel{
+    width: 17px;
+}
+.username{
+    padding-left: 10px;
+}
 /*.bottom-nav{
     display: none;
     width:100%;
@@ -365,7 +371,7 @@ body {
 
     }
      @media only screen and (max-width: 400px){
-        .bottom-nav{
+      /*  .bottom-nav{
             display: block;
         }
         .display-tweet{
@@ -373,7 +379,7 @@ body {
         }
         .left-side-navbar{
             display: none !important;
-        }
+        }*/
         .emailimage {
             bottom: 85%;
         
