@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>profile</title>
     <link rel="stylesheet" href="./css/profile.css">
-
+    <link rel="stylesheet" href="./css/home.css">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="down-side-profile">
                         <div>
-                            <div>edit profile</div>
+                            <div class="edit">edit profile</div>
                         </div>
                         <div>
                             <div>
@@ -67,8 +67,8 @@
                             <div>
                                 <div class="lightwrite">date</div>
                                 <div class="following">
-                                    <p class="lightwrite">following</p>
-                                    <p class="lightwrite">followers</p>
+                                    <p class="lightwrite"><span>num</span> following</p>
+                                    <p class="lightwrite"><span>num</span> followers</p>
                                 </div>
 
                             </div>
@@ -160,10 +160,32 @@
 
                 </div>
 
-
+                  
 
             </section>
         </div>
+        <div class="popup" id="popup">
+            <p id="cancel">cancel</p>
+        <div class="tweet-container">
+            <div class="image-container">
+                <img class="image" src="./images/3.png" alt="">
+            </div>
+            <div class="input-container">
+                <input placeholder="what is happening" type="text">
+            </div>
+        </div>
+        <div class="tweet-actions">
+            <div class="image-uploader">
+                <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
+            </div>
+            <div>
+                <button class="btn btn-blue">Tweet</button>
+            </div>
+        </div>
+        </div>
+
+        </div>
+        <div id="page-mask" class="page-mask"></div>
         <!--end who to follow section-->
     </section>
     <!--end home page-->
