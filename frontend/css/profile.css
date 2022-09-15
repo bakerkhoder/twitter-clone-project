@@ -61,7 +61,10 @@ body {
     border: 0;
     padding-left: 50px;
 }
-
+.navitem{
+    display: flex;
+    justify-content: space-around;
+}
 /*display tweet*/
 
 .display-tweet {
@@ -110,6 +113,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    border-left: 1px solid rgb(233, 230, 230);
+    border-right:1px solid  rgb(233, 230, 230); 
 
 
 
@@ -161,9 +166,8 @@ body {
     flex-direction: column;
     padding: 2% 2%;
     border-top: 1px solid rgb(170, 167, 167);
-    border-right: 1px solid rgb(170, 167, 167);
-    border-left: 1px solid rgb(170, 167, 167);
-
+    border-left: 1px solid rgb(233, 230, 230);;
+    border-right:1px solid  rgb(233, 230, 230); ;
 }
 
 .tweet-card>* {
@@ -251,7 +255,7 @@ body {
     width: 100vw;
 }
 .popup {
-    
+    display: none;
     width: 40vw;
     height: 40vh;
     position: absolute;
@@ -266,6 +270,36 @@ body {
 .display{
     display: block;
 }
+.none{
+    display: none;
+}
+.svg{
+    width:23px;
+}
+/*.bottom-nav{
+    display: none;
+    width:100%;
+    flex-direction: row;
+    justify-content: space-around;
+    height:5vh;
+    background-color: white;
+    position: absolute;
+    top: 95vh;
+}
+.bottom-nav>*{
+    padding-left: 20%;
+}
+.nav-display{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav-display>button{
+   width: 5%;
+}
+.nav-display>*{
+    height: 50%;
+}*/
 @media only screen and (max-width: 1200px) {
     .left-side-navbar {
         width: 10%;
@@ -320,6 +354,29 @@ body {
 
         }
 
+        .popup {
+        width: 100vw;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: auto;
+        background-color: white;
+        }
 
     }
-}
+     @media only screen and (max-width: 400px){
+        .bottom-nav{
+            display: block;
+        }
+        .display-tweet{
+            margin-left: 5%;
+        }
+        .left-side-navbar{
+            display: none !important;
+        }
+        .emailimage {
+            bottom: 85%;
+        
+     }
+
+}}
