@@ -94,12 +94,37 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      let nbr=document.createElement("div")
      likebutton.appendChild(nbr)
      nbr.textContent="7"
+})})
 
 
 
+fetch('http://localhost/php-contact/backend/contacts.php')
+.then((response) => response.json())
+.then((data) => {data.forEach((message)=>{
+    console.log(message)
+    let suggestions=document.querySelector(".suggestions")
+    let maybeknow=document.createElement("div")
+    suggestions.appendChild(maybeknow)
+    maybeknow.classList.add("maybeknow")
+    let image=document.createElement("img")
+    maybeknow.appendChild(image)
+    image.src="./images/3.png"
+    let container=document.createElement("div")
+    maybeknow.appendChild(container)
+    let username=document.createElement("div")
+    container.appendChild(username)
+    username.textContent="username"
+    let email=document.createElement("div")
+    container.appendChild(email)
+    email.textContent="email"
+    let buttoncntainer=document.createElement("div")
+    maybeknow.appendChild(buttoncntainer)
+    let followbutton=document.createElement("button")
+    buttoncntainer.appendChild(followbutton)
+    followbutton.classList.add("btn")
+    followbutton.classList.add("btn-blue")
+    followbutton.classList.add("black")
+    followbutton.textContent="follow"
 
-
-
-
-
+     
 })})
