@@ -56,27 +56,8 @@
 
                     <div class="upper-side-profile">
                        <input type="file" onchange="encodeImageFileAsURL(this)">
-                       <script>function
-                       encodeImageFileAsURL(element){
-                        let file=element.files[0]
-                        let reader=new FileReader()
-                        reader.onloadend=function(){
-                          function addcontacts(name) {
-                                           fetch(`http://localhost/php-contact/backend/addcontact.php`, {
-                                               method: 'POST',
-                                               body: new URLSearchParams({ "name": name }),
-                                           }).then(response => {
-                                               response.json()
-                                               console.log(response)
-                                           })
-                                               .then(data => console.log(data))
-                                       }
-                                       addcontacts(reader.result)
-
-                                   
-                        }
-                        reader.readAsDataURL(file)
-                       }</script>
+                       <script>
+                       </script>
                         <img id="imagi" src="" alt="">
                     </div>
                     <div class="down-side-profile">
@@ -194,16 +175,17 @@
             <div class="image-container">
                 <img class="image" src="./images/3.png" alt="">
             </div>
-            <div class="input-container">
-                <input id="" placeholder="what is happening" type="text">
+            <div  class="input-container">
+                <input id="inputtweettext" placeholder="what is happening" type="text">
             </div>
         </div>
         <div class="tweet-actions">
             <div class="image-uploader">
+                <input type="file" onchange="encodeImageFileAsURLtweet(this)">
                 <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
             </div>
             <div>
-                <button class="btn btn-blue cursor"><a href="./profile.html" style="color: white;"> Tweet</a></button>
+                <button id="tweetbutton" class="btn btn-blue cursor">Tweet</button>
             </div>
         </div>
         </div>

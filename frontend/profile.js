@@ -4,10 +4,12 @@ const popup=document.getElementById("popup")
 const darkenmask=document.getElementById("page-mask")
 const rightside=document.getElementById("rightside")
 const leftside=document.getElementById("leftside")
-
+//const btntweetimage=document.querySelector(".image-uploading")
+let tweetbutton=document.querySelector("#tweetbutton")
+let inputtweettext=document.querySelector("#inputtweettext")
 pressed=false
 console.log("ji")
- 
+ /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
 
     popup.classList.add("display")
@@ -44,6 +46,7 @@ console.log("ji")
   }
 }*/
 
+/*  fetching tweets information and creating a tweet card for each */ 
 fetch('http://localhost/php-contact/backend/contacts.php')
 
   .then((response) => response.json())
@@ -96,7 +99,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      nbr.textContent="7"
 })})
 
-
+/*fetching people you may know and creating their cards*/
 
 fetch('http://localhost/php-contact/backend/contacts.php')
 .then((response) => response.json())
@@ -128,3 +131,71 @@ fetch('http://localhost/php-contact/backend/contacts.php')
 
      
 })})
+
+let encodeImageFileAsURL=(element)=>{
+let file=element.files[0]
+let reader=new FileReader()
+reader.onloadend=function(){
+function addcontacts(name) {
+fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+ method: 'POST',
+ body: new URLSearchParams({ "name": name })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data)) }
+  let base64= reader.result.split(",")
+  console.log(base64)
+ addcontacts(base64[1])}
+ reader.readAsDataURL(file)}
+
+
+const encodeImageFileAsURLtweet=(element)=>{
+  tweetbutton.addEventListener("click",()=>{
+let file=element.files[0]
+let reader=new FileReader()
+reader.onloadend=function(){
+function addcontacts(name) {
+fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+ method: 'POST',
+ body: new URLSearchParams({ "name": name,"email":inputtweettext.value })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data)) }
+  let base64= reader.result.split(",")
+  console.log(base64[1])
+ addcontacts(base64[1])}
+ reader.readAsDataURL(file)})}  
+
+
+
+
+tweetbutton.addEventListener("click",()=>{
+  if(inputtweettext.value){
+    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+ method: 'POST',
+ body: new URLSearchParams({ "name": inputtweettext.value })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data)) 
+  }
+})
+
+
+
+/* adding photo to the tweet  */
+
+ /*function encodeImageFileAsURL(element){
+  let file=element.files[0]
+  let reader=new FileReader()
+  reader.onloadend=function(){
+  let addcontacts=(name)=> {
+                           fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+                                method: 'POST',
+                                body: new URLSearchParams({ "name": name }),
+                                 }).then(response => {response.json()
+                                        console.log(response)  })
+                                    .then(data => console.log(data))
+                                       }
+                            addcontacts(reader.result)}
+                            addcontacts(reader.result)
+                            reader.readAsDataURL(file)}*/

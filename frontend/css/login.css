@@ -139,7 +139,10 @@ a {
 #cancel {
     cursor: pointer;
 }
-
+.exit-range{
+    display: flex;
+    justify-content: space-between;
+}
 .popup {
     display: none;
     width: 40vw;
