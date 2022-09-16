@@ -55,8 +55,29 @@
                 <div class="myprofile">
 
                     <div class="upper-side-profile">
+                       <input type="file" onchange="encodeImageFileAsURL(this)">
+                       <script>function
+                       encodeImageFileAsURL(element){
+                        let file=element.files[0]
+                        let reader=new FileReader()
+                        reader.onloadend=function(){
+                          function addcontacts(name) {
+                                           fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+                                               method: 'POST',
+                                               body: new URLSearchParams({ "name": name }),
+                                           }).then(response => {
+                                               response.json()
+                                               console.log(response)
+                                           })
+                                               .then(data => console.log(data))
+                                       }
+                                       addcontacts(reader.result)
 
-                        <img src="" alt="">
+                                   
+                        }
+                        reader.readAsDataURL(file)
+                       }</script>
+                        <img id="imagi" src="" alt="">
                     </div>
                     <div class="down-side-profile">
                         <div>
