@@ -166,15 +166,16 @@
                     <img class="image" src="./images/3.png" alt="">
                 </div>
                 <div class="input-container">
-                    <input placeholder="what is happening" type="text">
+                    <input id="inputtweettext" placeholder="what is happening" type="text">
                 </div>
             </div>
             <div class="tweet-actions">
                 <div class="image-uploader">
+                    <input type="file" onchange="encodeImageFileAsURLtweet(this)">
                     <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
                 </div>
                 <div>
-                    <button class="btn btn-blue cursor"><a style="color: white;" href="./home.html">Tweet</a> </button>
+                    <button id="tweetbutton" class="btn btn-blue cursor">Tweet</button>
                 </div>
             </div>
         </div>

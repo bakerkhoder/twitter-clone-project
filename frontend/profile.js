@@ -164,7 +164,9 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
   let base64= reader.result.split(",")
   console.log(base64[1])
  addcontacts(base64[1])}
- reader.readAsDataURL(file)})}  
+ reader.readAsDataURL(file)
+ window.location.href="./home.html"
+})}  
 
 
 
@@ -177,6 +179,7 @@ tweetbutton.addEventListener("click",()=>{
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data)) 
+  window.location.href="./home.html"
   }
 })
 

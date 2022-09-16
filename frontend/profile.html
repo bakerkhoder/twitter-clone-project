@@ -47,7 +47,7 @@
                 </div>
                 <div class="searchbar">
 
-                    <input type="text" placeholder="search" name="" id="">
+                    <input type="text" onsubmit="handlesubmit()" placeholder="search" name="" id="">
                 </div>
             </div>
             <!--start tweets display -->
@@ -56,8 +56,6 @@
 
                     <div class="upper-side-profile">
                        <input type="file" onchange="encodeImageFileAsURL(this)">
-                       <script>
-                       </script>
                         <img id="imagi" src="" alt="">
                     </div>
                     <div class="down-side-profile">
