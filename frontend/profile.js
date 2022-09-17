@@ -54,9 +54,9 @@ console.log("ji")
 
   .then((response) => response.json())
   .then((data) => {
-    username.value=data.username
-    email.value=data.email
-    date.value=data.date
+    currentusername.textcontent=data.username //aw .value??
+    email.textcontent=data.email
+    date.textcontent=data.date
     image.src=data.image
     following.value=data.following
     followers.value=data.folllowers
@@ -64,11 +64,6 @@ console.log("ji")
   })*/
 
 
-/*const display=()=>{
-  if(tweetcontent){
-
-  }
-}*/
 
 /*  fetching tweets information and creating a tweet card for each */ 
 fetch('http://localhost/php-contact/backend/contacts.php')
@@ -134,7 +129,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     clicked=true
  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
- body: new URLSearchParams({ "name": username })})
+ body: new URLSearchParams({ "name": currentusername })})
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data))  this is for sending like to datbase*/
@@ -151,10 +146,9 @@ fetch('http://localhost/php-contact/backend/contacts.php')
  else{
   likee.src="./images/like.png"  
   clicked=false
-  nbr-=1
   /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
- body: new URLSearchParams({ "name": username })})
+ body: new URLSearchParams({ "name": currentusername })})
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data))  this is for sending dislike to datbase*/
@@ -208,7 +202,7 @@ const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php
     clicked=true
  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
- body: new URLSearchParams({ "name": username })})
+ body: new URLSearchParams({ "name": currentusername })})
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data))  this is for sending that i am following this user to datbase*/
@@ -223,12 +217,12 @@ const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php
   
   }
  else{
-  likee.src="./images/like.png"  
+  followbutton.textContent="follow"  
   clicked=false
-  nbr-=1
+  
   /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
- body: new URLSearchParams({ "name": username })})
+ body: new URLSearchParams({ "name": currentusername })})
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data))  this is for sending dislike to datbase*/
