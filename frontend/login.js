@@ -6,8 +6,8 @@ addEventListener("load",()=>{
  const upperside=document.getElementById("upperside")
  const footer=document.getElementById("footer")
  const signin=document.getElementById("signin")
+ const signup=document.getElementById("signup")
 
- 
   pressed=false
  popupbtn.addEventListener("click",()=>{
     popup.classList.add("display")
@@ -88,12 +88,11 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   .then(data=>console.log(data))
 }
    addcontacts(firstname,lastname,email,date,password)
-    window.localStorage.setItem(email,firstname)
+    window.localStorage.setItem(email,password)
   }
 })
 
-
- /*window.addEventListener("resize", function(event) {
+  /*window.addEventListener("resize", function(event) {
    var w=document.body.clientWidth
    pressed=true
     popupbtn.addEventListener("click",()=>{
@@ -102,14 +101,28 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
        upperside.classList.add("none")
        footer.classList.add("none")
     }
-
-    
   })   
  }) */
+
+
+ 
+ 
 })
 
-  
+
  
+  signup.addEventListener("click",()=>{
+       console.log("e")
+         let oldpass=document.getElementById("oldpass").value
+         let oldemail=document.getElementById("oldmail").value
+       console.log(localStorage.getItem(oldemail))
+
+   if(localStorage.getItem(oldemail)==oldpass){
+    console.log("yes")
+    window.location.href="./home.html"
+   }
+
+  })
     
 
 })

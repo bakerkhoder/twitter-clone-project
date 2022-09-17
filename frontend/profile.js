@@ -24,7 +24,7 @@ let inputtweettext=document.querySelector("#inputtweettext")
 //const updatednamee=updatedname.split(" ")
 //const firstname=updatednamee[0]
 //const lastname=updatednamee[1]
-pressed=false
+
  /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
 
@@ -36,13 +36,7 @@ pressed=false
    // pressed=false
     popup.classList.remove("display")
     console.log("ok")
-    darkenmask.classList.remove("page-mask")
-
-})
-
-
-
-
+    darkenmask.classList.remove("page-mask")})
  /*window.addEventListener("resize", function(event) {
    var w=document.body.clientWidth
    pressed=true
@@ -51,12 +45,7 @@ pressed=false
         console.log("hi")
        rightside.classList.add("none")
        leftside.classList.add("none")
-    }
-  
-    
-  })   
- }) */
-})
+    }})}) */})
 
     popupbtn.addEventListener("click",()=>{
     popup.classList.add("display")
