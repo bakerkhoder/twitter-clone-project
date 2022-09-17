@@ -1,11 +1,15 @@
 <?php
 require('../db/connection.php');
+require('functions.php');
 
-$firstName = $_POST['first_name'];
-$lastName = $_POST['last_name'];
-$userName = $_POST['username'];
-$dob = $_POST['dob'];
-$email = $_POST['email'];
+//check_input():it removes space and special characters from data
+//in order to prevent the database from malicious data
+
+$firstName =check_input($_POST['first_name']);
+$lastName = check_input($_POST['last_name']);
+$userName = check_input($_POST['username']);
+$dob = check_input($_POST['dob']);
+$email = check_input($_POST['email']);
 
 /* hashing the password*/
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
