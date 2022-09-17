@@ -1,13 +1,12 @@
 <?php
 include("../db/connection.php");
 
-//this query gives the count of users who like a specific tweet 
-//in addition to the name of its owner
-
-$query = $mysqli->prepare("SELECT count(likes_tweets.user_id), users.id, users.username FROM likes_tweets
-join users
-on users.id = likes_tweets.user_id
-WHERE likes_tweets.tweets_id = 2");
+//this query gives the id, content, name and  username to a specific tweet 
+$query = $mysqli->prepare("
+    SELECT tweet_id, tweets.content, tweets.user_id, users.first_name, users.username
+    FROM `likes_tweets`
+    join tweets on tweets.id = likes_tweets.tweet_id
+    join users on users.id = tweets.user_id;");
 
 $query->execute();
 $array = $query->get_result();
