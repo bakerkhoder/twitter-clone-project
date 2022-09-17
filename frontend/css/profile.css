@@ -194,6 +194,7 @@ body {
 }
 
 .like {
+    cursor: pointer;
     width: 17px;
     height: 17px;
 }
@@ -282,6 +283,7 @@ body {
 .username{
     padding-left: 10px;
 }
+
 /*.bottom-nav{
     display: none;
     width:100%;

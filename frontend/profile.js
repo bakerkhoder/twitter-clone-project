@@ -6,14 +6,14 @@ const rightside=document.getElementById("rightside")
 const leftside=document.getElementById("leftside")
 const searchuser=document.getElementById("searchuser")
 const maybeknow=document.querySelector(".maybeknow")
-const username=document.getElementById("username")
+const currentusername=document.getElementById("username")
 const email=document.getElementById("email")
 const date =document.getElementById("date")
-const following=document.getElementByI("following")
+const following=document.getElementById("following")
 const followers=document.getElementById("followers")
 const image=document.getElementById("emailimage")
-const imagi=document.getElementById("imagi")
-const like=document.querySelector("like")
+const backimage=document.getElementById("imagi")
+
 //const btntweetimage=document.querySelector(".image-uploading")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
@@ -96,14 +96,16 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      let username=document.createElement("div")
      usertweet.appendChild(username)
      username.textContent="username"
+     //username.textcontent=username
      let email=document.createElement("div")
      usertweet.appendChild(email)
      email.textContent="email"
+     //email.textcontent=email
      let tweettext=document.createElement("div")
      usercontent.appendChild(tweettext)
      tweettext.classList.add("tweet-text")
      tweettext.textContent="buhbu"
-     //console.log("donne") fik tzid hon logo
+     //tweettext.textcontent=textcontent
      let tweetimage=document.createElement("div")
      card.appendChild(tweetimage)
      tweetimage.classList.add("tweet-container-image")
@@ -111,16 +113,61 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      tweetimage.appendChild(image)
      image.classList.add("tweet-container-image")
      image.src="./images/3.png"
+     //image.src=image
      let likebutton=document.createElement("div")
      card.appendChild(likebutton)
      likebutton.classList.add("like-button")
+     let nbr=document.createElement("div")
+     likebutton.appendChild(nbr)
+     nbr.textContent=7
+     //nbr.content =likesnbr
      let likee=document.createElement("img")
      likee.classList.add("like")
      likee.src="./images/like.png"
      likebutton.appendChild(likee)
-     let nbr=document.createElement("div")
-     likebutton.appendChild(nbr)
-     nbr.textContent="7"
+
+     var clicked =false
+ likee.addEventListener("click",()=>{
+  if(clicked==false){
+    likee.src="./images/liked.png"
+    console.log("true")
+    clicked=true
+ /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": username })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending like to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+
+  
+  }
+ else{
+  likee.src="./images/like.png"  
+  clicked=false
+  nbr-=1
+  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": username })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending dislike to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+  }})
+
+     
 })})
 
 /*fetching people you may know and creating their cards*/
@@ -153,11 +200,52 @@ const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php
     followbutton.classList.add("btn-blue")
     followbutton.classList.add("black")
     followbutton.textContent="follow"
+    var clicked =false
+    followbutton.addEventListener("click",()=>{
+  if(clicked==false){
+    followbutton.textContent="unfollow"
+    console.log("true")
+    clicked=true
+ /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": username })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending that i am following this user to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+
+  
+  }
+ else{
+  likee.src="./images/like.png"  
+  clicked=false
+  nbr-=1
+  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": username })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending dislike to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+  }})
+
 
      
 })})}
 fetchmayknow()
-
+/* hee lsoura lback image ba3d lezim n3mil ma3a eshya tenyi lal edi profile
 let encodeImageFileAsURL=(element)=>{
 let file=element.files[0]
 let reader=new FileReader()
@@ -177,10 +265,10 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 
   .then((response) => response.json())
   .then((data) => {
-    imagi.src=data.imagi
+    backimage.src=data.backimage
 
 })}
-
+*/
 
 const encodeImageFileAsURLtweet=(element)=>{
   tweetbutton.addEventListener("click",()=>{
@@ -293,23 +381,5 @@ fetch('http://localhost/php-contact/backend/contacts.php')
  //$("#container").children('#name').each(function()
 //like event
 
-/*
- like.addEventListener('click',()=>{
-   //3mel like backgrroud zindex =1 
-  like.classList.toggle("liked")
-  let isliked=true
-  
-  if(isliked){
-    fetch  //ra2m w zida 3al id tb3 like
-      // likesnumb=...
-  }
-  if(!like.classList("liked")){
-    fetch//  shild id w na2is ra2mun
-    //likenum=
-  }
- 
 
- 
 
- })
-*/
