@@ -6,7 +6,11 @@
 
 }
 
-
+.backprofimg{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 
 body {
     overflow: hidden;
@@ -33,7 +37,10 @@ body {
 .left-side-navbar>* {
     padding: 4% 10% 4% 15%;
 }
-
+.navtext{
+    font-weight: bold;
+    color: black;
+}
 .logo {
     width: 28px;
     height: 23px;
@@ -138,7 +145,8 @@ body {
     position: absolute;
     bottom: 60%;
     left: 2%;
-    border-radius: 50px;
+    border-radius: 50%;
+    height: 65%;
     border: 3px solid white;
 
 }
@@ -156,7 +164,14 @@ body {
     margin-left: 2%;
 }
 .edit{
-    margin-left: 80%;
+    border: 1px solid rgb(126, 121, 121);
+    margin-right: 10%;
+    margin-left: 70%;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    padding-left:1% ;
+    cursor: pointer;
 }
 
 
@@ -216,7 +231,9 @@ body {
 .user-tweet>* {
     margin-left: 5px;
 }
-
+.birth-up{
+    margin-top: 5%;
+}
 
 /*who to follow*/
 .who-to-follow {
@@ -259,7 +276,7 @@ body {
 .popup {
     display: none;
     width: 40vw;
-    height: 40vh;
+    height: 50vh;
     position: absolute;
     z-index: 1;
     left: 35%;
@@ -283,6 +300,9 @@ body {
 }
 .username{
     padding-left: 10px;
+}
+.email{
+    color: gray;
 }
 
 /*.bottom-nav{
@@ -356,10 +376,10 @@ body {
     @media only screen and (max-width: 670px) {
 
         .emailimage {
-            width: 20%;
+            width: 25%;
             position: absolute;
             bottom: 75%;
-
+            height: 50%;
 
         }
 

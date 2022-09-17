@@ -1,4 +1,4 @@
-const cancel =document.getElementById("cancel")
+const cancel =document.querySelector(".class")
 const popupbtn=document.getElementById("popupbtn")
 const popup=document.getElementById("popup")
 const darkenmask=document.getElementById("page-mask")
@@ -13,12 +13,14 @@ const following=document.getElementById("following")
 const followers=document.getElementById("followers")
 const image=document.getElementById("emailimage")
 const backimage=document.getElementById("imagi")
+const popupprof=document.getElementById("popupprof")
+const popupprofcard=document.getElementById("popupprofshow")
+const canceledit=document.getElementById("cancel-edit")
 
 //const btntweetimage=document.querySelector(".image-uploading")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
 pressed=false
-console.log("ji")
  /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
 
@@ -33,6 +35,10 @@ console.log("ji")
     darkenmask.classList.remove("page-mask")
 
 })
+
+
+
+
  /*window.addEventListener("resize", function(event) {
    var w=document.body.clientWidth
    pressed=true
@@ -47,6 +53,29 @@ console.log("ji")
   })   
  }) */
 })
+
+    popupbtn.addEventListener("click",()=>{
+    popup.classList.add("display")
+    darkenmask.classList.add("page-mask")
+    cancel.addEventListener("click",()=>{
+     //   rightside.classList.remove("none")
+      // leftside.classList.remove("none")
+    popup.classList.remove("display")
+    console.log("ok")
+    darkenmask.classList.remove("page-mask")})})
+
+    
+    popupprof.addEventListener("click",()=>{
+    popupprofcard.classList.add("display")
+    darkenmask.classList.add("page-mask")
+    canceledit.addEventListener("click",()=>{
+      console.log("e")
+    popupprofcard.classList.remove("display")
+    console.log("ok")
+    darkenmask.classList.remove("page-mask")})})
+
+
+
 //fetching data user profile
 
 
@@ -70,7 +99,6 @@ fetch('http://localhost/php-contact/backend/contacts.php')
 
   .then((response) => response.json())
   .then((data) => {data.forEach((tweet)=>{
-    console.log(tweet)
      let displaytweet = document.querySelector(".display-tweet")
      let card = document.createElement("div")
      card.classList.add("tweet-card")
@@ -94,6 +122,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      //username.textcontent=username
      let email=document.createElement("div")
      usertweet.appendChild(email)
+     email.classList.add("email")
      email.textContent="email"
      //email.textcontent=email
      let tweettext=document.createElement("div")
@@ -168,8 +197,8 @@ fetch('http://localhost/php-contact/backend/contacts.php')
 
 const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php')
 .then((response) => response.json())
+//                             user
 .then((data) => {data.forEach((message)=>{
-    console.log(message)
     let suggestions=document.querySelector(".suggestions")
     let maybeknow=document.createElement("div")
     suggestions.appendChild(maybeknow)
@@ -182,9 +211,11 @@ const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php
     container.classList.add("usr")
     let username=document.createElement("div")
     container.appendChild(username)
+    /*username.textcontent=name */
     username.textContent="username"
     let email=document.createElement("div")
     container.appendChild(email)
+    email.classList.add("email")
     email.textContent="email"
     let buttoncntainer=document.createElement("div")
     maybeknow.appendChild(buttoncntainer)
@@ -268,6 +299,7 @@ const encodeImageFileAsURLtweet=(element)=>{
   tweetbutton.addEventListener("click",()=>{
 let file=element.files[0]
 let reader=new FileReader()
+var image=""
 reader.onloadend=function(){
 function addcontacts(name) {
 fetch(`http://localhost/php-contact/backend/addcontact.php`, {
@@ -277,10 +309,14 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
                     console.log(response)  })
   .then(data => console.log(data)) }
   let base64= reader.result.split(",")
-  console.log(base64[1])
- addcontacts(base64[1])}
+   addcontacts(base64[1])  
+  image=base64[1]
+ }
  reader.readAsDataURL(file)
- window.location.href="./home.html"
+
+ console.log(image)
+ 
+ window.location.href="./profile.html"
 })}  
 
 
@@ -294,7 +330,7 @@ tweetbutton.addEventListener("click",()=>{
  .then(response => {response.json()
                     console.log(response)  })
   .then(data => console.log(data)) 
-  window.location.href="./home.html"
+  window.location.href="./profile.html"
   }
 })
 
@@ -312,18 +348,18 @@ searchuser.addEventListener("keypress",(e)=>{
 let suggestions=document.getElementsByClassName("maybeknow")
 for(var i=0;i<suggestions.length;i++){
   suggestions[i].style.display="none"
-console.log("done")}
+}
 fetch('http://localhost/php-contact/backend/contacts.php')
 
   .then((response) => response.json())
   .then((data) => {
     let suggestions=document.querySelector(".suggestions")
-    console.log(data)
     let maybeknow=document.createElement("div")
     suggestions.appendChild(maybeknow)
     maybeknow.classList.add("maybeknow")
    let image=document.createElement("img")
     maybeknow.appendChild(image)
+    //image.src=image
     image.src="./images/hero.png"
     let container=document.createElement("div")
     maybeknow.appendChild(container)
@@ -342,11 +378,53 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     followbutton.classList.add("btn-blue")
     followbutton.classList.add("black")
     followbutton.textContent="follow"
-    console.log("yup")
+    
+    var clicked =false
+    followbutton.addEventListener("click",()=>{
+  if(clicked==false){
+    followbutton.textContent="unfollow"
+    console.log("true")
+    clicked=true
+ /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": currentusername })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending that i am following this user to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+
+  
+  }
+ else{
+  followbutton.textContent="follow"  
+  clicked=false
+  
+  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
+ method: 'POST',
+ body: new URLSearchParams({ "name": currentusername })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))  this is for sending dislike to datbase*/
+
+   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data))
+   nbr.text content=(numer of likes from fetch method)   
+  this is for reseting the number of likes*/
+  }})
+
+  
   })
    fetchmayknow()
 
-      console.log("test")
+    
   }
 })
 
