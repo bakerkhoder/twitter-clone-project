@@ -4,6 +4,14 @@ const popup=document.getElementById("popup")
 const darkenmask=document.getElementById("page-mask")
 const rightside=document.getElementById("rightside")
 const leftside=document.getElementById("leftside")
+const searchuser=document.getElementById("searchuser")
+const maybeknow=document.querySelector(".maybeknow")
+const username=document.getElementById("username")
+const email=document.getElementById("email")
+const date =document.getElementById("date")
+const following=document.getElementByI("following")
+const followers=document.getElementById("followers")
+const image=document.getElementById("emailimage")
 //const btntweetimage=document.querySelector(".image-uploading")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
@@ -37,7 +45,20 @@ console.log("ji")
   })   
  }) */
 })
+//fetching data user profile
 
+
+/*fetch('http://localhost/php-contact/backend/contacts.php')
+
+  .then((response) => response.json())
+  .then((data) => {
+    username.value=data.username
+    email.value=data.email
+    date.value=data.date
+    image.src=data.image
+    following.value=data.following
+    followers.value=data.folllowers
+  })*/
 
 
 /*const display=()=>{
@@ -101,7 +122,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
 
 /*fetching people you may know and creating their cards*/
 
-fetch('http://localhost/php-contact/backend/contacts.php')
+const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php')
 .then((response) => response.json())
 .then((data) => {data.forEach((message)=>{
     console.log(message)
@@ -114,6 +135,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     image.src="./images/3.png"
     let container=document.createElement("div")
     maybeknow.appendChild(container)
+    container.classList.add("usr")
     let username=document.createElement("div")
     container.appendChild(username)
     username.textContent="username"
@@ -130,7 +152,8 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     followbutton.textContent="follow"
 
      
-})})
+})})}
+fetchmayknow()
 
 let encodeImageFileAsURL=(element)=>{
 let file=element.files[0]
@@ -185,6 +208,57 @@ tweetbutton.addEventListener("click",()=>{
 
 
 
+searchuser.addEventListener("keypress",(e)=>{
+  if(e.key==="Enter"){
+    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+ method: 'POST',
+ body: new URLSearchParams({ "name": searchuser.value })})
+ .then(response => {response.json()
+                    console.log(response)  })
+ .then(data => console.log(data))
+
+let suggestions=document.getElementsByClassName("maybeknow")
+for(var i=0;i<suggestions.length;i++){
+  suggestions[i].style.display="none"
+console.log("done")}
+fetch('http://localhost/php-contact/backend/contacts.php')
+
+  .then((response) => response.json())
+  .then((data) => {
+    let suggestions=document.querySelector(".suggestions")
+    console.log(data)
+    let maybeknow=document.createElement("div")
+    suggestions.appendChild(maybeknow)
+    maybeknow.classList.add("maybeknow")
+   let image=document.createElement("img")
+    maybeknow.appendChild(image)
+    image.src="./images/hero.png"
+    let container=document.createElement("div")
+    maybeknow.appendChild(container)
+    container.classList.add("usr")
+    let username=document.createElement("div")
+    container.appendChild(username)
+    username.textContent="username"
+    let email=document.createElement("div")
+    container.appendChild(email)
+    email.textContent="email"
+    let buttoncntainer=document.createElement("div")
+    maybeknow.appendChild(buttoncntainer)
+    let followbutton=document.createElement("button")
+    buttoncntainer.appendChild(followbutton)
+    followbutton.classList.add("btn")
+    followbutton.classList.add("btn-blue")
+    followbutton.classList.add("black")
+    followbutton.textContent="follow"
+    console.log("yup")
+  })
+   fetchmayknow()
+
+      console.log("test")
+  }
+})
+
+
 /* adding photo to the tweet  */
 
  /*function encodeImageFileAsURL(element){
@@ -202,3 +276,8 @@ tweetbutton.addEventListener("click",()=>{
                             addcontacts(reader.result)}
                             addcontacts(reader.result)
                             reader.readAsDataURL(file)}*/
+
+
+
+
+ //$("#container").children('#name').each(function()
