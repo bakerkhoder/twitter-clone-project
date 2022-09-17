@@ -12,6 +12,8 @@ const date =document.getElementById("date")
 const following=document.getElementByI("following")
 const followers=document.getElementById("followers")
 const image=document.getElementById("emailimage")
+const imagi=document.getElementById("imagi")
+const like=document.querySelector("like")
 //const btntweetimage=document.querySelector(".image-uploading")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
@@ -58,6 +60,7 @@ console.log("ji")
     image.src=data.image
     following.value=data.following
     followers.value=data.folllowers
+  
   })*/
 
 
@@ -169,7 +172,14 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
   let base64= reader.result.split(",")
   console.log(base64)
  addcontacts(base64[1])}
- reader.readAsDataURL(file)}
+ reader.readAsDataURL(file)
+ fetch('http://localhost/php-contact/backend/contacts.php')
+
+  .then((response) => response.json())
+  .then((data) => {
+    imagi.src=data.imagi
+
+})}
 
 
 const encodeImageFileAsURLtweet=(element)=>{
@@ -281,3 +291,25 @@ fetch('http://localhost/php-contact/backend/contacts.php')
 
 
  //$("#container").children('#name').each(function()
+//like event
+
+/*
+ like.addEventListener('click',()=>{
+   //3mel like backgrroud zindex =1 
+  like.classList.toggle("liked")
+  let isliked=true
+  
+  if(isliked){
+    fetch  //ra2m w zida 3al id tb3 like
+      // likesnumb=...
+  }
+  if(!like.classList("liked")){
+    fetch//  shild id w na2is ra2mun
+    //likenum=
+  }
+ 
+
+ 
+
+ })
+*/
