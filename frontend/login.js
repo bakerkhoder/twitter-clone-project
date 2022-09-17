@@ -28,7 +28,7 @@ signin.addEventListener("click",()=>{
 
 
  const date=document.getElementById("date").value
- const email=document.getElementById("email").value.split("@")
+ const email=document.getElementById("email").value
  const password=document.getElementById("password").value
  const firstname=document.getElementById("firstname").value
  const lastname=document.getElementById("lastname").value
@@ -54,16 +54,12 @@ if(!date){
 if(password.length<8){
   text="you have to enter at least for password 8 charcters "
 }
-if(email[0].length<3 ||email[1].length<5){
-  console.log(email)
-  console.log(email[1])
-  text="invalid email"
-}
+
 
 
 textalert.style.backgroundColor=" rgb(64, 170, 147)"
 textalert.textContent="information saved"
-if(firstname.length<5 ||lastname.length<5 || email[0].length<3 ||email[1].length<5 || !date || password<5){
+if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
     textalert.textContent=text
     textalert.style.backgroundColor="red"
 
@@ -82,17 +78,18 @@ if(firstname.length<5 ||lastname.length<5 || email[0].length<3 ||email[1].length
 
 
   
-  /*if(email&&password&&firstname&&lastname&&date){
+  if(email&&password&&firstname&&lastname&&date){
     function addcontacts(firstname,lastname,email,date,password){
-  fetch(`http://localhost/php-contact/backend/addcontact.php`,{
+  fetch(`http://localhost/twitter-clone-project/backend/apiregister.php`,{
     method:'POST',
-    body:new URLSearchParams({"firstname":firstname,"lastname":lastname,"email":email,"date":date,"password":password}),
+    body:new URLSearchParams({"first_name":firstname,"last_name":lastname,"email":email,"dob":date,"password":password}),
   }).then(response =>{response.json()
   console.log(response)})
   .then(data=>console.log(data))
 }
    addcontacts(firstname,lastname,email,date,password)
-  }*/
+    window.localStorage.setItem(email,firstname)
+  }
 })
 
 

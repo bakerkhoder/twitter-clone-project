@@ -1,4 +1,4 @@
-const cancel =document.querySelector(".class")
+const cancel =document.querySelector("#cancel")
 const popupbtn=document.getElementById("popupbtn")
 const popup=document.getElementById("popup")
 const darkenmask=document.getElementById("page-mask")
@@ -16,10 +16,14 @@ const backimage=document.getElementById("imagi")
 const popupprof=document.getElementById("popupprof")
 const popupprofcard=document.getElementById("popupprofshow")
 const canceledit=document.getElementById("cancel-edit")
-
-//const btntweetimage=document.querySelector(".image-uploading")
+const updatedname=document.getElementById("updatedname")
+const updateddate=document.getElementById("updateddate")
+const savebtn=document.getElementById("savebutton")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
+//const updatednamee=updatedname.split(" ")
+//const firstname=updatednamee[0]
+//const lastname=updatednamee[1]
 pressed=false
  /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
@@ -299,7 +303,6 @@ const encodeImageFileAsURLtweet=(element)=>{
   tweetbutton.addEventListener("click",()=>{
 let file=element.files[0]
 let reader=new FileReader()
-var image=""
 reader.onloadend=function(){
 function addcontacts(name) {
 fetch(`http://localhost/php-contact/backend/addcontact.php`, {
@@ -313,9 +316,6 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
   image=base64[1]
  }
  reader.readAsDataURL(file)
-
- console.log(image)
- 
  window.location.href="./profile.html"
 })}  
 
@@ -428,6 +428,50 @@ fetch('http://localhost/php-contact/backend/contacts.php')
   }
 })
 
+/* edit profile */
+const encodeinfandimgprof=(element)=>{
+ savebtn.addEventListener("click",()=>{
+let file=element.files[0]
+let reader=new FileReader()
+ let updatednamee=updatedname.value.split(" ")
+let firstname=updatednamee[0]
+let lastname=updatednamee[1]
+reader.onloadend=function(){
+function addcontacts(name) {
+fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+  method: 'POST',//          
+ body: new URLSearchParams({ "email":firstname,"name":name/*,"date":updateddate.value*/})})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data)) }
+  let base64= reader.result.split(",")
+   addcontacts(base64[1])  
+  console.log('test')
+ }
+ reader.readAsDataURL(file)
+
+ 
+ 
+ window.location.href="./profile.html"
+})}  
+
+
+
+
+
+
+savebtn.addEventListener("click",()=>{
+  if(updatedname){
+    console.log("hhhhhh")
+    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+ method: 'POST',
+ body: new URLSearchParams({ "name": firstname })})
+ .then(response => {response.json()
+                    console.log(response)  })
+  .then(data => console.log(data)) 
+  window.location.href="./profile.html"
+  }
+})
 
 /* adding photo to the tweet  */
 
