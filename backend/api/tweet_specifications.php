@@ -1,6 +1,6 @@
 <?php
 include("../db/connection.php");
-$id = $_GET['id'];
+$id = $_POST['id'];
 //this query gives the id, content, name and  username to a specific tweet 
 $query = $mysqli->prepare("
     SELECT tweet_id, tweets.content, tweets.user_id, users.first_name, users.username
