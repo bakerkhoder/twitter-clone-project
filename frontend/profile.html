@@ -6,28 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>profile</title>
     <link rel="stylesheet" href="./css/profile.css">
-
+    <link rel="stylesheet" href="./css/home.css">
 </head>
 
 <body>
     <!--start home page-->
-    <section class="homepage">
+    <section  class="homepage">
         <!--start left side navbar-->
-        <section class="left-side-navbar">
+        <section id="leftside" class="left-side-navbar">
             <div>
                 <img class="logo" src="./images/backgroundd.png" alt="">
             </div>
-            <div>
-                home
+            <div class="navitem cursor">
+                <div><a href="./home.html"><img class="svg" src="./images/home.png" alt=""></a></div>
+                <div class="navtext"><a href="./home.html">home</a> </div> 
             </div>
-            <div>
-                profile
+            <div class="navitem cursor">
+                 <div><img class="svg" src="./images/profile.png" alt=""></div>
+                 <div  class="navtext" > profile</div>
             </div>
-            <div>
-                tweet
+            <div class="navitem cursor" id="popupbtn">
+                <button style="width:75%;" class="btn btn-blue cursor"> tweet</button>
             </div>
-            <div>
-                accounts
+            <div class="navitem cursor">
+                <div><a   href="./login.html"><img id="logout" class="svg" src="./images/account.png" alt=""></a></div>
+                <div  class="navtext" >logout or <br> new account </div>
             </div>
         </section>
         <!--end left side navbar-->
@@ -37,14 +40,14 @@
 
 
 
-        <div class="contente">
+        <div id="rightside" class="contente">
             <div class="fix-top">
                 <div>
-                    <H1>Home</H1>
+                    <H1>username</H1>
                 </div>
                 <div class="searchbar">
 
-                    <input type="text" placeholder="search" name="" id="">
+                    <input type="text" placeholder="search" name="" id="searchuser">
                 </div>
             </div>
             <!--start tweets display -->
@@ -52,28 +55,27 @@
                 <div class="myprofile">
 
                     <div class="upper-side-profile">
-
-                        <img src="" alt="">
+                        <img id="imagi" class="backprofimg" src="./images/backgroudprof.avif" alt="">
                     </div>
                     <div class="down-side-profile">
                         <div>
-                            <div>edit profile</div>
+                            <div id="popupprof" class="edit">edit profile</div>
                         </div>
                         <div>
                             <div>
-                                <h1>Username</h1>
-                                <p class="lightwrite">email</p>
+                                <h1 id="username" class="username">Username</h1>
+                                <p id="email" class="lightwrite username">email</p>
                             </div>
                             <div>
-                                <div class="lightwrite">date</div>
-                                <div class="following">
-                                    <p class="lightwrite">following</p>
-                                    <p class="lightwrite">followers</p>
+                                <div id="date" class="lightwrite username">date</div>
+                                <div class="following username">
+                                    <p class="lightwrite"><span  id="following">num</span> following</p>
+                                    <p  class="lightwrite"><span id="followers">num</span> followers</p>
                                 </div>
 
                             </div>
                         </div>
-                        <img class="emailimage" src="./images/3.png" alt="">
+                        <img id="emailimage" class="emailimage" src="./images/prof.avif" alt="">
                     </div>
 
                 </div>
@@ -81,12 +83,11 @@
 
                 <div class="tweet-card">
                     <div class="tweet-card-top">
-                        <img class="profile-image" src="./images/3.png" alt="">
+                        <img class="profile-image" src="./images/backgroudprof.avif" alt="">
                         <div class="user-and-content">
                             <div class="user-tweet">
                                 <div>user</div>
-                                <div>logo</div>
-                                <div>email</div>
+                                <div class="email">email</div>
 
                             </div>
                             <div class="tweet-text">
@@ -103,11 +104,11 @@
                         <img class="tweet-container-image" src="./images/3.png" alt="">
                     </div>
                     <div class="like-button">
-                        <img class="like" src="./images/like.png" alt="">
-                        <div>number</div>
+                        <img id="like" class="like" src="./images/like.png" alt="">
+                        <div >number</div>
                     </div>
                 </div>
-                <div style="height:1400px ;">
+                <div >
 
                 </div>
             </section>
@@ -122,9 +123,9 @@
 
                         <img src="./images/3.png" alt="">
 
-                        <div>
+                        <div >
                             <div>username</div>
-                            <div>email</div>
+                            <div class="email">email</div>
                         </div>
                         <div>
                             <button class="btn btn-blue black">follow</button>
@@ -147,7 +148,7 @@
 
                     <div class="maybeknow">
 
-                        <img src="./images/3.png" alt="">
+                        <img src="./images/backgroudprof.avif" alt="">
 
                         <div>
                             <div>username</div>
@@ -160,14 +161,74 @@
 
                 </div>
 
-
+                  
 
             </section>
+        </div>
+        <div class="popup" id="popup">
+            <p id="cancel" class="cursor" ><img class="cancel" src="./images/exit.png" alt=""></p>
+        <div class="tweet-container">
+            <div class="image-container">
+                <img class="image" src="./images/3.png" alt="">
+            </div>
+            <div  class="input-container">
+                <input id="inputtweettext" placeholder="what is happening" type="text">
+            </div>
+        </div>
+        <div class="tweet-actions">
+            <div class="image-uploader">
+                <input type="file" onchange="encodeImageFileAsURLtweet(this)">
+                <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
+            </div>
+            <div>
+                <button id="tweetbutton" class="btn btn-blue cursor">Tweet</button>
+            </div>
+        </div>
+        </div>
+
+        </div>
+
+        <div class="popup" id="popupprofshow">
+            <p id="cancel-edit" class="cursor"><img class="cancel" src="./images/exit.png" alt=""></p>
+            <div class="tweet-container">
+                <div class="image-container">
+                    <img class="image" src="./images/3.png" alt="">
+                </div>
+                <div class="input-container">
+                    <input id="updatedname" placeholder="name" type="text">
+                    <input id="dateupdated" class="birth-up" type="date">
+                </div>
+            </div>
+           
+            <div class="tweet-actions">
+                <div class="image-uploader">
+                <label for="">prof-img:</label>   <input type="file" onchange="encodeinfandimgprof(this)">
+                </div>
+                <div>
+                    <button id="savebutton" class="btn btn-blue cursor">Save</button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+
+
+        <div id="page-mask" ></div>
+       <!--
+        <div class="bottom-nav">
+            <div class="nav-display">
+                <div><img class="svg" src="./images/home.png" alt=""></div>
+                <div><img class="svg" src="./images/profile.png" alt=""></div>
+                <button class="btn btn-blue"> tweet</button>
+                <div><img class="svg" src="./images/account.png" alt=""></div>
+            </div>
+              
+       --> 
         </div>
         <!--end who to follow section-->
     </section>
     <!--end home page-->
-
+     <script src="./profile.js" type="text/javascript"></script>
 </body>
 
 </html>

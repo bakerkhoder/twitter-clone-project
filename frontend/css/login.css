@@ -5,6 +5,10 @@
     box-sizing: border-box;
 
 }
+a {
+    text-decoration: none;
+    
+}
 
 /*styling the login page*/
 .maincontainer {
@@ -19,9 +23,7 @@
     min-height: 700px;
 }
 
-.footer {
-    margin-top: 17px;
-}
+
 
 .background>img {
     display: flex;
@@ -96,7 +98,7 @@
 }
 
 .btn-white {
-    color: rgb(104, 169, 243);
+    
     background-color: white;
     font-weight: bold;
     font-size: 13px;
@@ -137,7 +139,10 @@
 #cancel {
     cursor: pointer;
 }
-
+.exit-range{
+    display: flex;
+    justify-content: space-between;
+}
 .popup {
     display: none;
     width: 40vw;
@@ -195,6 +200,12 @@
 .btn>a {
     text-decoration: none;
     color: white;
+}
+.cursor{
+    cursor: pointer;
+}
+.cancel {
+    width: 27px;
 }
 
 @media only screen and (max-width: 800px) {

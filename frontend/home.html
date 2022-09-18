@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>homepage</title>
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/profile.css">
 
 </head>
 
@@ -17,17 +18,20 @@
             <div>
                 <img class="logo" src="./images/backgroundd.png" alt="">
             </div>
-            <div>
-                home
+            <div class="navitem cursor">
+                <div><img class="svg cursor" src="./images/home.png" alt=""></div>
+                <div class="navtext cursor"> <a href="#"></a> home</div>
             </div>
-            <div>
-                profile
+            <div class="navitem cursor">
+                <div><a href="./profile.html"><img class="svg" src="./images/profile.png" alt=""></a></div>
+                <div class="navtext">profile</div>
             </div>
-            <div>
-                tweet
+            <div class="navitem cursor" id="popupbtn">
+                <button style="width:75%;" class="btn btn-blue cursor"> tweet</button>
             </div>
-            <div>
-                accounts
+            <div class="navitem cursor">
+                <div><a href="./login.html"><img class="svg cursor" src="./images/account.png" alt=""></a></div>
+                <div class="navtext">logout or <br> new account </div>
             </div>
         </section>
         <!--end left side navbar-->
@@ -64,7 +68,7 @@
                             <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
                         </div>
                         <div>
-                            <button class="btn btn-blue">Tweet</button>
+                            <button class="btn btn-blue cursor">Tweet</button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +102,7 @@
                         <div>number</div>
                     </div>
                 </div>
-                <div style="height:1400px ;">
+                <div>
 
                 </div>
             </section>
@@ -132,7 +136,7 @@
                             <div>email</div>
                         </div>
                         <div>
-                            <button class="btn btn-blue black">follow</button>
+                            <button class="btn btn-blue black cursor">follow</button>
                         </div>
                     </div>
 
@@ -145,20 +149,45 @@
                             <div>email</div>
                         </div>
                         <div>
-                            <button class="btn btn-blue black">follow</button>
+                            <button class="btn btn-blue black cursor">follow</button>
                         </div>
                     </div>
 
                 </div>
 
-
+    
 
             </section>
         </div>
+        <div class="popup" id="popup">
+             <p id="cancel" class="cursor"><img class="cancel" src="./images/exit.png" alt=""></p>
+            <div class="tweet-container">
+                <div class="image-container">
+                    <img class="image" src="./images/3.png" alt="">
+                </div>
+                <div class="input-container">
+                    <input id="inputtweettext" placeholder="what is happening" type="text">
+                </div>
+            </div>
+            <div class="tweet-actions">
+                <div class="image-uploader">
+                    <input type="file" onchange="encodeImageFileAsURLtweet(this)">
+                    <img class="image-uploading" src="./images/image-uploading.jpg" alt="">
+                </div>
+                <div>
+                    <button id="tweetbutton" class="btn btn-blue cursor">Tweet</button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        <div id="page-mask"></div>
+      
+       
         <!--end who to follow section-->
     </section>
     <!--end home page-->
-
+<script src="./profile.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -6,7 +6,11 @@
 
 }
 
-
+.backprofimg{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 
 body {
     overflow: hidden;
@@ -33,7 +37,10 @@ body {
 .left-side-navbar>* {
     padding: 4% 10% 4% 15%;
 }
-
+.navtext{
+    font-weight: bold;
+    color: black;
+}
 .logo {
     width: 28px;
     height: 23px;
@@ -61,7 +68,10 @@ body {
     border: 0;
     padding-left: 50px;
 }
-
+.navitem{
+    display: flex;
+    justify-content: space-around;
+}
 /*display tweet*/
 
 .display-tweet {
@@ -110,6 +120,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    border-left: 1px solid rgb(233, 230, 230);
+    border-right:1px solid  rgb(233, 230, 230); 
 
 
 
@@ -124,7 +136,7 @@ body {
 .down-side-profile {
     position: relative;
     height: 30vh;
-    padding-top: 7%;
+    padding-top: 12%;
 
 }
 
@@ -133,7 +145,8 @@ body {
     position: absolute;
     bottom: 60%;
     left: 2%;
-    border-radius: 50px;
+    border-radius: 50%;
+    height: 65%;
     border: 3px solid white;
 
 }
@@ -143,15 +156,33 @@ body {
     color: gray;
 }
 
+.following{
+    display: flex;
+
+}
+.following>:last-child{
+    margin-left: 2%;
+}
+.edit{
+    border: 1px solid rgb(126, 121, 121);
+    margin-right: 10%;
+    margin-left: 70%;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    padding-left:1% ;
+    cursor: pointer;
+}
+
+
 /*tweet card*/
 .tweet-card {
     display: flex;
     flex-direction: column;
     padding: 2% 2%;
     border-top: 1px solid rgb(170, 167, 167);
-    border-right: 1px solid rgb(170, 167, 167);
-    border-left: 1px solid rgb(170, 167, 167);
-
+    border-left: 1px solid rgb(233, 230, 230);;
+    border-right:1px solid  rgb(233, 230, 230); ;
 }
 
 .tweet-card>* {
@@ -169,7 +200,7 @@ body {
 .profile-image {
     width: 48px;
     height: 48px;
-    border-radius: 50px;
+    border-radius: 50%;
 }
 
 .like-button {
@@ -178,6 +209,7 @@ body {
 }
 
 .like {
+    cursor: pointer;
     width: 17px;
     height: 17px;
 }
@@ -199,7 +231,9 @@ body {
 .user-tweet>* {
     margin-left: 5px;
 }
-
+.birth-up{
+    margin-top: 5%;
+}
 
 /*who to follow*/
 .who-to-follow {
@@ -218,6 +252,7 @@ body {
     height: 40px;
     width: 90px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .btn-blue {
@@ -228,7 +263,72 @@ body {
     font-size: 13px;
     border: 0px;
 }
+.page-mask {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+.popup {
+    display: none;
+    width: 40vw;
+    height: 50vh;
+    position: absolute;
+    z-index: 1;
+    left: 35%;
+    top: 20%;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+    
+}
+.display{
+    display: block;
+}
+.none{
+    display: none ;
+}
+.svg{
+    width:23px;
+}
+.cancel{
+    width: 17px;
+}
+.username{
+    padding-left: 10px;
+}
+.email{
+    color: gray;
+}
 
+/*.bottom-nav{
+    display: none;
+    width:100%;
+    flex-direction: row;
+    justify-content: space-around;
+    height:5vh;
+    background-color: white;
+    position: absolute;
+    top: 95vh;
+}
+.bottom-nav>*{
+    padding-left: 20%;
+}
+.nav-display{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav-display>button{
+   width: 5%;
+}
+.nav-display>*{
+    height: 50%;
+}*/
 @media only screen and (max-width: 1200px) {
     .left-side-navbar {
         width: 10%;
@@ -276,13 +376,36 @@ body {
     @media only screen and (max-width: 670px) {
 
         .emailimage {
-            width: 20%;
+            width: 25%;
             position: absolute;
             bottom: 75%;
-
+            height: 50%;
 
         }
 
+        .popup {
+        width: 100vw;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: auto;
+        background-color: white;
+        }
 
     }
-}
+     @media only screen and (max-width: 400px){
+      /*  .bottom-nav{
+            display: block;
+        }
+        .display-tweet{
+            margin-left: 5%;
+        }
+        .left-side-navbar{
+            display: none !important;
+        }*/
+        .emailimage {
+            bottom: 85%;
+        
+     }
+
+}}

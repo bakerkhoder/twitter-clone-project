@@ -5,7 +5,9 @@
     box-sizing: border-box;
 
 }
-
+a{
+    text-decoration: none;
+}
 
 
 body {
@@ -169,7 +171,7 @@ body {
     display: flex;
     width: 100%;
     height: 30%;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-top: 2%;
 
 }
@@ -273,7 +275,9 @@ body {
     font-size: 13px;
     border: 0px;
 }
-
+.cursor{
+    cursor: pointer;
+}
 @media only screen and (max-width: 1200px) {
     .left-side-navbar {
         width: 10%;
@@ -287,6 +291,9 @@ body {
     .who-to-follow {
         width: 40%;
 
+    }
+    .navtext{
+        display: none;
     }
 }
 
