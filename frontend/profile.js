@@ -21,6 +21,7 @@ const updateddate=document.getElementById("updateddate")
 const savebtn=document.getElementById("savebutton")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
+const logout=document.getElementById("logout")
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const useremail = urlParams.get('userinfo')
@@ -43,7 +44,10 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
        // followers.value=data.folllowers    waiting for the api
         console.log(userInfo)
         })
-       
+       // logout to remove the user from the local storage
+        logout.addEventListener("click",()=>{
+          localStorage.removeItem(useremail)
+        })
 //const updatednamee=updatedname.split(" ")
 //const firstname=updatednamee[0]
 //const lastname=updatednamee[1]
@@ -118,7 +122,7 @@ fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
      let email=document.createElement("div")
      usertweet.appendChild(email)
      email.classList.add("email")
-     email.textContent="email"
+     email.textContent=tweet.email
      //email.textcontent=email
      let tweettext=document.createElement("div")
      usercontent.appendChild(tweettext)
@@ -146,8 +150,8 @@ fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
      likebutton.appendChild(likee)
 
      var clicked =false
- likee.addEventListener("click",()=>{
-  if(clicked==false){
+     likee.addEventListener("click",()=>{
+     if(clicked==false){
     likee.src="./images/liked.png"
     console.log("true")
     clicked=true

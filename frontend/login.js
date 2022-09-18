@@ -125,7 +125,7 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
     
 
          var data = new FormData();
-         data.append('email', oldemail);
+         data.append('email',oldemail);
          data.append('password',oldpass);
 
 

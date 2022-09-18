@@ -7,7 +7,7 @@ require('connection.php');
 require('functions.php');
 
 //create a query for login
-$query = $mysqli->prepare("SELECT tweets.content, users.first_name FROM tweets,users WHERE tweets.user_id=users.id ");
+$query = $mysqli->prepare("SELECT tweets.content, users.first_name, users.email FROM tweets,users WHERE tweets.user_id=users.id ");
 $query->execute();
 //create a variable array  to store the results
 $array = $query->get_result();
