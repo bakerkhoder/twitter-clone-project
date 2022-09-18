@@ -194,28 +194,28 @@ fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
 
 /*fetching people you may know and creating their cards*/
 
-const fetchmayknow=()=>{fetch('http://localhost/php-contact/backend/contacts.php')
+const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/displaypeople.php')
 .then((response) => response.json())
 //                             user
-.then((data) => {data.forEach((message)=>{
+.then((data) => {data.forEach((people)=>{
     let suggestions=document.querySelector(".suggestions")
     let maybeknow=document.createElement("div")
     suggestions.appendChild(maybeknow)
     maybeknow.classList.add("maybeknow")
     let image=document.createElement("img")
     maybeknow.appendChild(image)
-    image.src="./images/3.png"
+    image.src="./images/prof.avif"
     let container=document.createElement("div")
     maybeknow.appendChild(container)
     container.classList.add("usr")
     let username=document.createElement("div")
     container.appendChild(username)
     /*username.textcontent=name */
-    username.textContent="username"
+    username.textContent=people.first_name
     let email=document.createElement("div")
     container.appendChild(email)
     email.classList.add("email")
-    email.textContent="email"
+    email.textContent=people.email
     let buttoncntainer=document.createElement("div")
     maybeknow.appendChild(buttoncntainer)
     let followbutton=document.createElement("button")
