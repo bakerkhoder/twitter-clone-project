@@ -88,6 +88,7 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   .then(data=>console.log(data))
 } //  window.location.href="./home.html"
    addcontacts(firstname,lastname,email,date,password)
+   window.location.href="./login.html"
   // fetch('http://localhost/twitter-clone-project/backend/apiregister.php')
   // .then((response) => {response.json()
   //   console.log(response)})
@@ -113,16 +114,45 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
 })
 
 
- 
+
+//sign up when the account already exist 
   signup.addEventListener("click",()=>{
        console.log("e")
          let oldpass=document.getElementById("oldpass").value
          let oldemail=document.getElementById("oldmail").value
        console.log(localStorage.getItem(oldemail))
+         
+    
 
-   if(localStorage.getItem(oldemail)==oldpass){
-    console.log("yes")
-    window.location.href="./home.html"
+         var data = new FormData();
+         data.append('email', oldemail);
+         data.append('password',oldpass);
+
+
+// axios.post(`http://localhost/twitter-clone-project/backend/login.php`,data)
+// .then(function (response) {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
+
+        var userInfo;
+
+        fetch(`http://localhost/twitter-clone-project/backend/login.php`,{
+        method:'POST',
+         body:data})
+        .then(response => response.text())
+        .then(result => {console.log(JSON.parse(result))
+        userInfo=JSON.parse(result)
+        window.location.href="./profile.html?userinfo="+userInfo[0].email
+
+        })
+        
+
+       if(localStorage.getItem(oldemail)==oldpass){
+       console.log(userInfo)
+
    }
 
   })

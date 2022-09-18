@@ -21,15 +21,25 @@ const updateddate=document.getElementById("updateddate")
 const savebtn=document.getElementById("savebutton")
 let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const useremail = urlParams.get('userinfo')
+console.log(useremail);
+const userInfo=[];
+var data = new FormData();
+data.append('email', useremail);
+fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
+         method:'POST',
+         body:data})
+        .then(response => response.text())
+        .then(result => {console.log(JSON.parse(result))
+        userInfo=JSON.parse(result)[0]
+  
+        })
+        console.log(userInfo)
 //const updatednamee=updatedname.split(" ")
 //const firstname=updatednamee[0]
 //const lastname=updatednamee[1]
-fetch('http://localhost/twitter-clone-project/backend/apiregister.php')
-.then((response) => {response.json()
-console.log(response)})
-//                             user
- .then(result => console.log(result))
-  .catch(error => console.log('error', error));
  /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
 
