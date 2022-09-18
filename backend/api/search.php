@@ -1,18 +1,13 @@
 <?php
 include("../db/connection.php");
-//result will appear according to the name inserted into search field
-$firstname = $_POST['first_name'];
-//query to give the results of search 
-$query = $mysqli->prepare("SELECT first_name, last_name FROM users where first_name ='{$firstname}'limit 1");
-
-$query->execute();
-$array = $query->get_result();
-
-$response = [];
-
-while ($a = $array->fetch_assoc()) {
-    $response[] = $a;
+$firstname = $_GET['first_name'];
+if ($firstname != true) {
+    exit;
 }
-
-$json = json_encode($response);
-echo $json;
+$query = $mysqli->prepare("SELECT id,first_name, last_name,email FROM users where first_name LIKE'?");
+$query->bind_param("s", "%{$firstname}%");
+$query->execute();
+$response = [
+    'success' => true
+];
+echo json_encode($response);
