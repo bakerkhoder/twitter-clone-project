@@ -1,9 +1,9 @@
 <?php
 include("../db/connection.php");
 //result will appear according to the name inserted into search field
-$key = $_GET['key'];
+$firstname = $_POST['first_name'];
 //query to give the results of search 
-$query = $mysqli->prepare("SELECT first_name, last_name FROM users where first_name =" . $key);
+$query = $mysqli->prepare("SELECT first_name, last_name FROM users where first_name ='{$firstname}'limit 1");
 
 $query->execute();
 $array = $query->get_result();
