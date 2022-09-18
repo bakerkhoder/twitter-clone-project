@@ -1,7 +1,6 @@
 <?php
 require('../db/connection.php');
 require('functions.php');
-
 $email =  $_POST['email'];
 $password = $_POST['password'];
 

@@ -10,7 +10,7 @@ require('functions.php');
 
 
 // create a query to insert a tweet post into databse
-$query = $mysqli->prepare("INSERT INTO tweets(user_id,content) VALUES ('?','?')");
+$query = $mysqli->prepare("INSERT INTO tweets(user_id,content) VALUES (?,?)");
 $query->bind_param('ss', $userId, $content);
 
 $query->execute();
