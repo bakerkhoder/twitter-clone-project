@@ -1,4 +1,9 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+	header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+	header('Access-Control-Allow-Headers: X-Requested-With');
+	header('Content-Type: application/json');
+
 require('connection.php');
 require('functions.php');
 
@@ -19,6 +24,37 @@ $query->bind_param('sssss', $firstName, $lastName, $dob, $email, $password);
 
 $query->execute();
 /*test the response*/
+  class user{
+       
+        //public $id;
+      
+        public $firstname;
+        public $email;
+        public $dob;
+       
+        //constructor
+        public function __construct($db){
+            $this->conn=$db;
+        }}
+
+
+$response = []; 
+$res=new user("twitterdb");
+$res->firstname=$firstName;
+$res->email=$email;
+$res->dob=$dob;
+/*$query1 = $mysqli->prepare("SELECT `first_name`,`email`,`dob` FROM `users` WHERE `first_name` = `$firstName`");
+$query1->execute();
+$array1 = $query->get_result();
+
 $response = [];
-$response["success"] = true;
+
+while($a = $array1->fetch_assoc()){
+    $response[] = $a;
+}
+
+$json = json_encode($response);
+echo $json;*/
+
+$response["data"] = $res;
 echo json_encode($response);?>

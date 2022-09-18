@@ -68,7 +68,7 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   }
 
  else{
-  window.location.href="./home.html"
+ // window.location.href="./home.html"
   
  }
 
@@ -86,8 +86,11 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   }).then(response =>{response.json()
   console.log(response)})
   .then(data=>console.log(data))
-}
+} //  window.location.href="./home.html"
    addcontacts(firstname,lastname,email,date,password)
+  // fetch('http://localhost/twitter-clone-project/backend/apiregister.php')
+  // .then((response) => {response.json()
+  //   console.log(response)})
     window.localStorage.setItem(email,password)
   }
 })

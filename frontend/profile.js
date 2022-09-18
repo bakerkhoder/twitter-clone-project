@@ -24,7 +24,12 @@ let inputtweettext=document.querySelector("#inputtweettext")
 //const updatednamee=updatedname.split(" ")
 //const firstname=updatednamee[0]
 //const lastname=updatednamee[1]
-
+fetch('http://localhost/twitter-clone-project/backend/apiregister.php')
+.then((response) => {response.json()
+console.log(response)})
+//                             user
+ .then(result => console.log(result))
+  .catch(error => console.log('error', error));
  /* display the popup for the tweet when clicking on tweet in leftside navbar*/
  popupbtn.addEventListener("click",()=>{
 
