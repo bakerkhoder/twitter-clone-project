@@ -6,7 +6,8 @@ require('functions.php');
 $user_follower = $_POST['user_follower'];
 $user_followed = $_POST['user_followed'];
 
-$query = $mysqli->prepare("INSERT INTO users_follow(user_follower,user_followed) VALUES (?, ?)");
+//create a query to allow the users follow each other 
+$query = $mysqli->prepare("INSERT INTO users_follow(user_follower,user_followed) VALUES (?,?)");
 $query->bind_param('ss', $user_follower,$user_followed);
 
 $query->execute();
