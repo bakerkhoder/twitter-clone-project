@@ -25,7 +25,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const useremail = urlParams.get('userinfo')
 console.log(useremail);
-const userInfo=[];
+var userInfo;
 var data = new FormData();
 data.append('email', useremail);
 fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
@@ -34,9 +34,16 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
         .then(response => response.text())
         .then(result => {console.log(JSON.parse(result))
         userInfo=JSON.parse(result)[0]
-  
-        })
+        //uploading the user infos on the profile
+        currentusername.innerHTML=userInfo.first_name
+        email.innerHTML=userInfo.email
+        date.innerHTML=userInfo.dob
+       // image.src=data.image  waiting for the api
+       // following.value=data.following    waiting for the api
+       // followers.value=data.folllowers    waiting for the api
         console.log(userInfo)
+        })
+       
 //const updatednamee=updatedname.split(" ")
 //const firstname=updatednamee[0]
 //const lastname=updatednamee[1]
@@ -82,28 +89,8 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
     console.log("ok")
     darkenmask.classList.remove("page-mask")})})
 
-
-
-//fetching data user profile
-
-
-/*fetch('http://localhost/php-contact/backend/contacts.php')
-
-  .then((response) => response.json())
-  .then((data) => {
-    currentusername.textcontent=data.username //aw .value??
-    email.textcontent=data.email
-    date.textcontent=data.date
-    image.src=data.image
-    following.value=data.following
-    followers.value=data.folllowers
-  
-  })*/
-
-
-
 /*  fetching tweets information and creating a tweet card for each */ 
-fetch('http://localhost/php-contact/backend/contacts.php')
+fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
 
   .then((response) => response.json())
   .then((data) => {data.forEach((tweet)=>{
@@ -117,7 +104,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      let profimage=document.createElement("img")
      tweettop.appendChild(profimage)
      profimage.classList.add("profile-image")
-     profimage.src="./images/3.png"
+     profimage.src="./images/photo.avif"
      let usercontent=document.createElement("div")
      tweettop.appendChild(usercontent)
      usercontent.classList.add("user-and-content")
@@ -126,7 +113,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      usertweet.classList.add("user-tweet")
      let username=document.createElement("div")
      usertweet.appendChild(username)
-     username.textContent="username"
+     username.textContent=tweet.first_name
      //username.textcontent=username
      let email=document.createElement("div")
      usertweet.appendChild(email)
@@ -136,7 +123,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      let tweettext=document.createElement("div")
      usercontent.appendChild(tweettext)
      tweettext.classList.add("tweet-text")
-     tweettext.textContent="buhbu"
+     tweettext.textContent=tweet.content
      //tweettext.textcontent=textcontent
      let tweetimage=document.createElement("div")
      card.appendChild(tweetimage)
@@ -144,7 +131,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
      let image=document.createElement("img")
      tweetimage.appendChild(image)
      image.classList.add("tweet-container-image")
-     image.src="./images/3.png"
+     image.src="./images/tweetphoto.jpg"
      //image.src=image
      let likebutton=document.createElement("div")
      card.appendChild(likebutton)
