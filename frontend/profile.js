@@ -308,6 +308,7 @@ let file=element.files[0]
 let reader=new FileReader()
 reader.onloadend=function(){
 function addcontacts(name) {
+  //this is a fake api to make sure that the data of the image is send
 fetch(`http://localhost/php-contact/backend/addcontact.php`, {
  method: 'POST',
  body: new URLSearchParams({ "name": name,"email":inputtweettext.value })})
