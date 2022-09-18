@@ -2,16 +2,13 @@
 require('../db/connection.php');
 require('functions.php');
 
-//get the id's of users through POST method
-$user_follower = $_POST['user_follower'];
-$user_followed = $_POST['user_followed'];
+$tweet_id = $_POST['tweet_id'];
+$user_id = $_POST['user_id'];
 
-//create a query to allow the users follow each other 
-$query = $mysqli->prepare("INSERT INTO users_follow(user_follower,user_followed) VALUES (?,?)");
-$query->bind_param('ss', $user_follower,$user_followed);
-
+$query = $mysqli->prepare("INSERT INTO likes_tweets(tweet_id, user_id) VALUES (?,?)");
+$query->bind_param('ii', $tweet_id, $user_id);
 $query->execute();
-/*test the response*/
-$response = [];
-$response["success"] = true;
+$response = [
+    'success' => true
+];
 echo json_encode($response);
