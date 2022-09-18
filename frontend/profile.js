@@ -230,12 +230,20 @@ const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/di
     followbutton.textContent="unfollow"
     console.log("true")
     clicked=true
- /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
- method: 'POST',
- body: new URLSearchParams({ "name": currentusername })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))  this is for sending that i am following this user to datbase*/
+  //FTECH FOR SENDING EMAIL TO BE FOLLOWED 
+  //waiting for the api
+    //  var emailfollwed=people.email
+  //  var emailfollower=useremail
+  //  var data = new FormData();
+  //  data.append('emailfollow', emailfollower);
+  //  data.append('emailfollowed',emailfollwed );
+  //  fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
+  //        method:'POST',
+  //        body:data})
+  //       .then(response => response.text())
+  //       .then(result => {console.log(JSON.parse(result))})
+
+
 
    /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
  .then(response => {response.json()
@@ -249,7 +257,7 @@ const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/di
  else{
   followbutton.textContent="follow"  
   clicked=false
-  
+  //waiting for the api
   /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
  body: new URLSearchParams({ "name": currentusername })})
@@ -293,7 +301,7 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 
 })}
 */
-
+/* upload the image and the text of the tweet into the tweets table*/
 const encodeImageFileAsURLtweet=(element)=>{
   tweetbutton.addEventListener("click",()=>{
 let file=element.files[0]
@@ -330,25 +338,25 @@ tweetbutton.addEventListener("click",()=>{
 })
 
 
-
+/*the searchbar which fetch the person wanted create a card for him put him on the top and the create who left */
 searchuser.addEventListener("keypress",(e)=>{
-  if(e.key==="Enter"){
-    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
- method: 'POST',
- body: new URLSearchParams({ "name": searchuser.value })})
- .then(response => {response.json()
-                    console.log(response)  })
- .then(data => console.log(data))
-
-let suggestions=document.getElementsByClassName("maybeknow")
-for(var i=0;i<suggestions.length;i++){
-  suggestions[i].style.display="none"
-}
-fetch('http://localhost/php-contact/backend/contacts.php')
-
-  .then((response) => response.json())
-  .then((data) => {
-    let suggestions=document.querySelector(".suggestions")
+  if(e.key==="Enter"){ 
+    var usernames="";
+    var emails="";
+    var data = new FormData();
+         data.append('first_name',searchuser.value);
+        fetch(`http://localhost/twitter-clone-project/backend/search.php`,{
+        method:'POST',
+         body:data})
+        .then(response => response.text())
+        .then(result => {console.log(JSON.parse(result))
+         usernames=JSON.parse(result)[0].first_name
+         emails=JSON.parse(result)[0].email
+         let  deleteditems=document.getElementsByClassName("maybeknow")
+         for(var i=0;i<deleteditems.length;i++){
+         deleteditems[i].style.display="none"
+         }
+          let suggestions=document.querySelector(".suggestions")
     let maybeknow=document.createElement("div")
     suggestions.appendChild(maybeknow)
     maybeknow.classList.add("maybeknow")
@@ -361,10 +369,10 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     container.classList.add("usr")
     let username=document.createElement("div")
     container.appendChild(username)
-    username.textContent="username"
+    username.textContent=usernames
     let email=document.createElement("div")
     container.appendChild(email)
-    email.textContent="email"
+    email.textContent=emails
     let buttoncntainer=document.createElement("div")
     maybeknow.appendChild(buttoncntainer)
     let followbutton=document.createElement("button")
@@ -380,6 +388,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
     followbutton.textContent="unfollow"
     console.log("true")
     clicked=true
+    //waiting for the api
  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
  body: new URLSearchParams({ "name": currentusername })})
@@ -399,7 +408,7 @@ fetch('http://localhost/php-contact/backend/contacts.php')
  else{
   followbutton.textContent="follow"  
   clicked=false
-  
+  //waiting for the api
   /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
  body: new URLSearchParams({ "name": currentusername })})
@@ -413,10 +422,13 @@ fetch('http://localhost/php-contact/backend/contacts.php')
   .then(data => console.log(data))
    nbr.text content=(numer of likes from fetch method)   
   this is for reseting the number of likes*/
-  }})
+  }
 
   
   })
+        })
+
+   
    fetchmayknow()
 
     
@@ -469,7 +481,7 @@ savebtn.addEventListener("click",()=>{
 })
 
 /* adding photo to the tweet  */
-
+//waiting for the api
  /*function encodeImageFileAsURL(element){
   let file=element.files[0]
   let reader=new FileReader()
