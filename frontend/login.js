@@ -22,6 +22,19 @@ addEventListener("load",()=>{
 })
 
 
+   
+  window.addEventListener("resize", function(event) {
+   var w=document.body.clientWidth
+   pressed=true
+ 
+    if(w<=800 && pressed==true){
+        console.log("hi")
+       upperside.classList.add("none")
+       footer.classList.add("none")
+    }
+  
+ }) 
+
 signin.addEventListener("click",()=>{
 
 
@@ -96,17 +109,6 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   }
 })
 
-  /*window.addEventListener("resize", function(event) {
-   var w=document.body.clientWidth
-   pressed=true
-    popupbtn.addEventListener("click",()=>{
-    if(w<=800 && pressed==true){
-        console.log("hi")
-       upperside.classList.add("none")
-       footer.classList.add("none")
-    }
-  })   
- }) */
 
 
  
@@ -123,10 +125,8 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
        console.log(localStorage.getItem(oldemail))
          
     
-
-         var data = new FormData();
-         data.append('email',oldemail);
-         data.append('password',oldpass);
+        
+      
 
 
 // axios.post(`http://localhost/twitter-clone-project/backend/login.php`,data)
@@ -136,7 +136,9 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
 // .catch(function (error) {
 //   console.log(error);
 // });
-
+   var data = new FormData();
+         data.append('email',oldemail);
+         data.append('password',oldpass);
         var userInfo;
 
         fetch(`http://localhost/twitter-clone-project/backend/login.php`,{
@@ -145,7 +147,7 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
         .then(response => response.text())
         .then(result => {console.log(JSON.parse(result))
         userInfo=JSON.parse(result)
-        window.location.href="./profile.html?userinfo="+userInfo[0].email
+        window.location.href="./profile.html?userinfo="+userInfo[0]
 
         })
         

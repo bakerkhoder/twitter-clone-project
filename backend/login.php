@@ -10,7 +10,7 @@ $email =  $_POST['email'];
 $password = $_POST['password'];
 
 //create a query for login
-$query = $mysqli->prepare("SELECT * FROM users WHERE email = ? limit 1");
+$query = $mysqli->prepare("SELECT * FROM users WHERE email = ?  limit 1");
 $query->bind_param('s', $email);
 $query->execute();
 //create a variable array  to store the results
