@@ -23,8 +23,14 @@ let tweetbutton=document.querySelector("#tweetbutton")
 let inputtweettext=document.querySelector("#inputtweettext")
 const logout=document.getElementById("logout")
 const queryString = window.location.search;
+
+
 const urlParams = new URLSearchParams(queryString);
 const useremail = urlParams.get('userinfo')
+var user = JSON.parse(localStorage.getItem(useremail));
+console.log(user)
+
+
 console.log(useremail);
 var userInfo;
 var data = new FormData();
@@ -99,16 +105,20 @@ fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
   .then((response) => response.json())
   .then((data) => {data.forEach((tweet)=>{
      let displaytweet = document.querySelector(".display-tweet")
+
      let card = document.createElement("div")
      card.classList.add("tweet-card")
      displaytweet.appendChild(card)
+
      let tweettop=document.createElement("div")
      card.appendChild(tweettop)
      tweettop.classList.add("tweet-card-top")
+
      let profimage=document.createElement("img")
      tweettop.appendChild(profimage)
      profimage.classList.add("profile-image")
      profimage.src="./images/photo.avif"
+
      let usercontent=document.createElement("div")
      tweettop.appendChild(usercontent)
      usercontent.classList.add("user-and-content")
@@ -302,41 +312,52 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 })}
 */
 /* upload the image and the text of the tweet into the tweets table*/
-const encodeImageFileAsURLtweet=(element)=>{
-  tweetbutton.addEventListener("click",()=>{
-let file=element.files[0]
-let reader=new FileReader()
-reader.onloadend=function(){
-function addcontacts(name) {
-  //this is a fake api to make sure that the data of the image is send
-fetch(`http://localhost/php-contact/backend/addcontact.php`, {
- method: 'POST',
- body: new URLSearchParams({ "name": name,"email":inputtweettext.value })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data)) }
-  let base64= reader.result.split(",")
-   addcontacts(base64[1])  
-  image=base64[1]
- }
- reader.readAsDataURL(file)
- window.location.href="./profile.html"
-})}  
 
+  const tweet_action=(data)=>{
+  const tweet_image=document.getElementById("tweet_image")
+  const convert_image_to_base64 = (file) => {
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  return reader
+}
+const readerr= convert_image_to_base64(tweet_image.files[0])
+readerr.addEventListener('load', () => {
+var tweet_image=readerr.result
+var content=data["content"]
+// fetch(`http://localhost/twitter-clone-project/backend/createtweet.php`, {
+//  method: 'POST',
+//  body: new URLSearchParams(data)})
+//  .then(response => {response.json()
+//                     console.log(response)  })
+//   .then(data => console.log(data))
 
+var formdata = new FormData();
+formdata.append("user_id",user.id);
+formdata.append("content", content);
+formdata.append("image",tweet_image);
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
 
-
-tweetbutton.addEventListener("click",()=>{
-  if(inputtweettext.value){
-    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
- method: 'POST',
- body: new URLSearchParams({ "name": inputtweettext.value })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data)) 
-  window.location.href="./profile.html"
+fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+ })
   }
+
+  tweetbutton.addEventListener("click",()=>{
+  var tweet_content=inputtweettext.value
+  data["content"]=tweet_content
+  tweet_action(data)
+  // na2es nb3at lid kamen
+ //window.location.href="./profile.html"
 })
+
+
+
 
 
 /*the searchbar which fetch the person wanted create a card for him put him on the top and the create who left */

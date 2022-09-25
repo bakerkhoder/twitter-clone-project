@@ -105,6 +105,8 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
   // fetch('http://localhost/twitter-clone-project/backend/apiregister.php')
   // .then((response) => {response.json()
   //   console.log(response)})
+
+
     window.localStorage.setItem(email,password)
   }
 })
@@ -147,13 +149,24 @@ if(firstname.length<5 ||lastname.length<5 ||!date || password<5){
         .then(response => response.text())
         .then(result => {console.log(JSON.parse(result))
         userInfo=JSON.parse(result)
-        window.location.href="./profile.html?userinfo="+userInfo[0]
+        window.location.href="./profile.html?userinfo="+userInfo[0].email
+        
+          const user = {
+          id: userInfo[0].id,
+          firstname:userInfo[0].firstname,
+          dob:userInfo[0].dob
+          // password: data.user_data.password,
+        }
+      //  user["test"]="ghvhgv"
+       localStorage.setItem(oldemail,JSON.stringify(user));
 
         })
         
 
        if(localStorage.getItem(oldemail)==oldpass){
        console.log(userInfo)
+
+
 
    }
 
