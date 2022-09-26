@@ -59,37 +59,24 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
         logout.addEventListener("click",()=>{
           localStorage.removeItem(useremail)
         })
-//const updatednamee=updatedname.split(" ")
-//const firstname=updatednamee[0]
-//const lastname=updatednamee[1]
- /* display the popup for the tweet when clicking on tweet in leftside navbar*/
+
  popupbtn.addEventListener("click",()=>{
 
     popup.classList.add("display")
     darkenmask.classList.add("page-mask")
     cancel.addEventListener("click",()=>{
-     //   rightside.classList.remove("none")
-      // leftside.classList.remove("none")
-   // pressed=false
+
     popup.classList.remove("display")
 
     darkenmask.classList.remove("page-mask")})
- /*window.addEventListener("resize", function(event) {
-   var w=document.body.clientWidth
-   pressed=true
-    popupbtn.addEventListener("click",()=>{
-    if(w<=800 ){
-        console.log("hi")
-       rightside.classList.add("none")
-       leftside.classList.add("none")
-    }})}) */})
+
+  })
 
     popupbtn.addEventListener("click",()=>{
     popup.classList.add("display")
     darkenmask.classList.add("page-mask")
     cancel.addEventListener("click",()=>{
-     //   rightside.classList.remove("none")
-      // leftside.classList.remove("none")
+  
     popup.classList.remove("display")
   
     darkenmask.classList.remove("page-mask")})})
@@ -185,9 +172,9 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
   // INSERT DATA
   //for profile image
   if (profile_image_path) {
-   profimage.src = `./${profile_image_path}`//HONNN LAPTH LEZMLO TZBIT
+   profimage.src = `./${profile_image_path}`
   } else {
-    // profimage.src = '../assets/svg/ui-user-profile.svg'  7et suea tenyiii
+    // profimage.src = '../assets/svg/ui-user-profile.svg'  7et sura tenyiii
   }
   //for username and email
   username.textContent=name
@@ -195,64 +182,45 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
 
  //for tweet image
    image.src=`./${tweet_picture}`
-
-
-  
-
   //for tweettext
   tweettext.textContent=tweet
-
  //for the like icon
  likee.src="./images/like.png"
-
- //for likes nbr
-  
-
-  // APPENDING ELEMENTS INSIDE EACH OTHER
 
   // checking wether there is a picture before appending it  ntebih 5od he iza sar shi 8alat
   //if (tweet_picture != null) {
    // tweet_image.append(tweet_img)
 
 //  }
-   var clicked =false
+  
    likee.addEventListener('click', () => { 
   
     console.log(user_id);
     console.log(tweet_id)
     var data = new FormData();
-    data.append('user_id', user_id);
-    data.append('tweet_id', tweet_id);
-   var formdata = new FormData();
-   formdata.append("tweet_id", "1");
-   formdata.append("user_id", "2");
+    
+    var formdata = new FormData();
+    formdata.append("tweet_id",tweet_id);
+    formdata.append("user_id", user.id);
 
-  var requestOptions = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
+    var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+     };
 
 fetch("http://localhost/twitter-clone-project/backend/like_tweet.php", requestOptions)
   .then(response => response.text())
   .then(result => {console.log(JSON.parse(result))
                    nbr.textContent=JSON.parse(result).success
                     if(JSON.parse(result).success==0){
-     likee.src="./images/like.png"}
-    else{likee.src="./images/liked.png"}               
-  })
+                         likee.src="./images/like.png"}
+                    else{likee.src="./images/liked.png"}})
   .catch(error => console.log('error', error));
      })
    }
 
-
-
-  
-
-
-
-
-
+//display all the lsit of tweets
 
    function displayLoop(num) {
   for (let i = 0; i < num; i++) {
@@ -263,9 +231,7 @@ fetch("http://localhost/twitter-clone-project/backend/like_tweet.php", requestOp
           data.tweets_info[i].id,
           data.tweets_info[i].tweet,
           data.tweets_info[i].picture,
-       
           data.tweets_info[i].first_name,
-         
           data.tweets_info[i].prof_image,
           data.tweets_info[i].user_id,
           data.tweets_info[i].likes
@@ -283,82 +249,6 @@ fetch(`http://localhost/twitter-clone-project/backend/get_all_tweets.php`)
 
 
 
-// fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
-
-//   .then((response) => response.json())
-//   .then((data) => {data.forEach((tweet)=>{
-//      let displaytweet = document.querySelector(".display-tweet")
-
-//      let card = document.createElement("div")
-//      card.classList.add("tweet-card")
-//      displaytweet.appendChild(card)
-
-//      let tweettop=document.createElement("div")
-//      card.appendChild(tweettop)
-//      tweettop.classList.add("tweet-card-top")
-
-//      let profimage=document.createElement("img")
-//      tweettop.appendChild(profimage)
-//      profimage.classList.add("profile-image")
-//      profimage.src="./images/photo.avif"
-
-//      let usercontent=document.createElement("div")
-//      tweettop.appendChild(usercontent)
-//      usercontent.classList.add("user-and-content")
-//      let usertweet=document.createElement("div")
-//      usercontent.appendChild(usertweet)
-//      usertweet.classList.add("user-tweet")
-//      let username=document.createElement("div")
-//      usertweet.appendChild(username)
-//      username.textContent=tweet.first_name
-//      //username.textcontent=username
-//      let email=document.createElement("div")
-//      usertweet.appendChild(email)
-//      email.classList.add("email")
-//      email.textContent=tweet.email
-//      //email.textcontent=email
-//      let tweettext=document.createElement("div")
-//      usercontent.appendChild(tweettext)
-//      tweettext.classList.add("tweet-text")
-//      tweettext.textContent=tweet.content
-//      //tweettext.textcontent=textcontent
-//      let tweetimage=document.createElement("div")
-//      card.appendChild(tweetimage)
-//      tweetimage.classList.add("tweet-container-image")
-//      let image=document.createElement("img")
-//      tweetimage.appendChild(image)
-//      image.classList.add("tweet-container-image")
-//      image.src="./images/tweetphoto.jpg"
-//      //image.src=image
-//      let likebutton=document.createElement("div")
-//      card.appendChild(likebutton)
-//      likebutton.classList.add("like-button")
-//      let nbr=document.createElement("div")
-//      likebutton.appendChild(nbr)
-//      nbr.textContent=7
-//      //nbr.content =likesnbr
-//      let likee=document.createElement("img")
-//      likee.classList.add("like")
-//      likee.src="./images/like.png"
-//      likebutton.appendChild(likee)
-
-//      var clicked =false
-//      likee.addEventListener("click",()=>{
-//      if(clicked==false){
-//     likee.src="./images/liked.png"
-   
-//     clicked=true
-
-  
-//   }
-//  else{
-//   likee.src="./images/like.png"  
-//   clicked=false
-
-//   }})
-
-     
-// })})
 
 /*fetching people you may know and creating their cards*/
 
@@ -445,30 +335,7 @@ const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/di
      
 })})}
 fetchmayknow()
-/* hee lsoura lback image ba3d lezim n3mil ma3a eshya tenyi lal edi profile
-let encodeImageFileAsURL=(element)=>{
-let file=element.files[0]
-let reader=new FileReader()
-reader.onloadend=function(){
-function addcontacts(name) {
-fetch(`http://localhost/php-contact/backend/addcontact.php`, {
- method: 'POST',
- body: new URLSearchParams({ "name": name })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data)) }
-  let base64= reader.result.split(",")
-  console.log(base64)
- addcontacts(base64[1])}
- reader.readAsDataURL(file)
- fetch('http://localhost/php-contact/backend/contacts.php')
 
-  .then((response) => response.json())
-  .then((data) => {
-    backimage.src=data.backimage
-
-})}
-*/
 /* upload the image and the text of the tweet into the tweets table*/////NEWWWWWWWWWWWW
 
   const tweet_action=(data)=>{
@@ -507,7 +374,7 @@ fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestO
   data["tweet"]=tweet_content
   tweet_action(data)
   // na2es nb3at lid kamen
- //window.location.href="./profile.html"
+ setTimeout(()=>window.location.href="./profile.html?userinfo="+useremail, 2000)
 })
 
 
