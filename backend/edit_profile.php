@@ -12,7 +12,7 @@ if (isset($_POST['id'])) {
      $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
      $profile= isset($_POST['prof_image']) ? $_POST['prof_image'] : '';
       
-
+   echo $profile;
     $profile_path = '';
     if ($profile != '') {
         $profile_img_data = convertToBase64($profile,'../frontend/images/', 'images/');
@@ -33,7 +33,8 @@ $edit_user_stmt->bind_param('sssi', $first_name,$dob, $profile_path, $id);
 $edit_user_result = $edit_user_stmt->execute();
 $response = [];
 
-echo $id;
+echo $profile_path;
+echo $dob;
 $response["success"] = true;
 echo json_encode($response);}
  if ($profile != '') {

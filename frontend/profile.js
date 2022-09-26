@@ -28,10 +28,11 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const useremail = urlParams.get('userinfo')
 var user = JSON.parse(localStorage.getItem(useremail));
-console.log(user)
+//console.log(user)
 
+//fetching user profile info
 
-console.log(useremail);
+//console.log(useremail);
 var userInfo;
 var data = new FormData();
 data.append('email', useremail);
@@ -45,10 +46,12 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
         currentusername.innerHTML=userInfo.first_name
         email.innerHTML=userInfo.email
         date.innerHTML=userInfo.dob
+     //   console.log(userInfo.profimage)
+        image.src="./"+userInfo.prof_image
        // image.src=data.image  waiting for the api
        // following.value=data.following    waiting for the api
        // followers.value=data.folllowers    waiting for the api
-        console.log(userInfo)
+       // console.log(userInfo)
         })
        // logout to remove the user from the local storage
         logout.addEventListener("click",()=>{
@@ -67,7 +70,7 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
       // leftside.classList.remove("none")
    // pressed=false
     popup.classList.remove("display")
-    console.log("ok")
+
     darkenmask.classList.remove("page-mask")})
  /*window.addEventListener("resize", function(event) {
    var w=document.body.clientWidth
@@ -86,7 +89,7 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
      //   rightside.classList.remove("none")
       // leftside.classList.remove("none")
     popup.classList.remove("display")
-    console.log("ok")
+  
     darkenmask.classList.remove("page-mask")})})
 
     
@@ -94,9 +97,9 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
     popupprofcard.classList.add("display")
     darkenmask.classList.add("page-mask")
     canceledit.addEventListener("click",()=>{
-      console.log("e")
+  
     popupprofcard.classList.remove("display")
-    console.log("ok")
+
     darkenmask.classList.remove("page-mask")})})
 
 /*  fetching tweets information and creating a tweet card for each */ 
@@ -163,7 +166,7 @@ fetch('http://localhost/twitter-clone-project/backend/displaytweet.php')
      likee.addEventListener("click",()=>{
      if(clicked==false){
     likee.src="./images/liked.png"
-    console.log("true")
+   
     clicked=true
  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
  method: 'POST',
@@ -238,7 +241,7 @@ const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/di
     followbutton.addEventListener("click",()=>{
   if(clicked==false){
     followbutton.textContent="unfollow"
-    console.log("true")
+    
     clicked=true
   //FTECH FOR SENDING EMAIL TO BE FOLLOWED 
   //waiting for the api
@@ -323,7 +326,7 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 const readerr= convert_image_to_base64(tweet_image.files[0])
 readerr.addEventListener('load', () => {
 var tweet_image=readerr.result
-console.log(tweet_image)
+
 var content=data["tweet"]
 
 
@@ -355,42 +358,48 @@ fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestO
 
 /////NEWWWWW PROFIILE UPDATEEE
 
-//   const edit_prof=(data)=>{
-//   const prof_img=document.getElementById("prof-img")
-//   const convert_image_to_base64 = (file) => {
-//   const reader = new FileReader()
-//   reader.readAsDataURL(file)
-//   return reader
-// }
-// const readerr= convert_image_to_base64(prof_img.files[0])
-// readerr.addEventListener('load', () => {
-// var prof_img=readerr.result
-// var content=data["content"]
+  const edit_prof=(data)=>{
+  const prof_img=document.getElementById("prof-img")
+  const convert_image_to_base64 = (file) => {
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  return reader
+}
+const readerr= convert_image_to_base64(prof_img.files[0])
+readerr.addEventListener('load', () => {
+var prof_img=readerr.result
 
 
-// var formdata = new FormData();
-// formdata.append("user_id",user.id);
-// formdata.append("content", content);
-// formdata.append("prof-image",prof_img);
-// var requestOptions = {
-//   method: 'POST',
-//   body: formdata,
-//   redirect: 'follow'
-// };
+let dob=data["dob"]
+let firstname=data["first_name"]
+var formdata = new FormData();
+formdata.append("first_name",firstname);
+formdata.append("dob", dob);
+formdata.append("prof_image",prof_img);
+formdata.append("id",user.id);
 
-// fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-//  })
-//   }
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
 
-//   tweetbutton.addEventListener("click",()=>{
-//   var tweet_content=inputtweettext.value
-//   data["content"]=tweet_content
-//   tweet_action(data)
+fetch("http://localhost/twitter-clone-project/backend/edit_profile.php", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+ })
+  }
 
-// })
+savebtn.addEventListener("click",()=>{
+
+
+  data["first_name"]=updatedname.value
+  data["dob"]=updateddate.value
+    setTimeout(()=>window.location.href="./profile.html?userinfo="+useremail, 2000)
+  edit_prof(data)
+
+})
 
 
 
@@ -497,73 +506,50 @@ searchuser.addEventListener("keypress",(e)=>{
 })
 
 /* edit profile */
-const encodeinfandimgprof=(element)=>{
- savebtn.addEventListener("click",()=>{
-let file=element.files[0]
-let reader=new FileReader()
- let updatednamee=updatedname.value.split(" ")
-let firstname=updatednamee[0]
-let lastname=updatednamee[1]
-reader.onloadend=function(){
-function addcontacts(name) {
-fetch(`http://localhost/php-contact/backend/addcontact.php`, {
-  method: 'POST',//          
- body: new URLSearchParams({ "email":firstname,"name":name/*,"date":updateddate.value*/})})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data)) }
-  let base64= reader.result.split(",")
-   addcontacts(base64[1])  
-  console.log('test')
- }
- reader.readAsDataURL(file)
+// const encodeinfandimgprof=(element)=>{
+//  savebtn.addEventListener("click",()=>{
+// let file=element.files[0]
+// let reader=new FileReader()
+//  let updatednamee=updatedname.value.split(" ")
+// let firstname=updatednamee[0]
+// let lastname=updatednamee[1]
+// reader.onloadend=function(){
+// function addcontacts(name) {
+// fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+//   method: 'POST',//          
+//  body: new URLSearchParams({ "email":firstname,"name":name/*,"date":updateddate.value*/})})
+//  .then(response => {response.json()
+//                     console.log(response)  })
+//   .then(data => console.log(data)) }
+//   let base64= reader.result.split(",")
+//    addcontacts(base64[1])  
+//   console.log('test')
+//  }
+//  reader.readAsDataURL(file)
 
  
  
- window.location.href="./profile.html"
-})}  
+//  window.location.href="./profile.html"
+// })}  
 
 
 
 
 
 
-savebtn.addEventListener("click",()=>{
-  if(updatedname){
-    console.log("hhhhhh")
-    fetch(`http://localhost/php-contact/backend/addcontact.php`, {
- method: 'POST',
- body: new URLSearchParams({ "name": firstname })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data)) 
-  window.location.href="./profile.html"
-  }
-})
+// savebtn.addEventListener("click",()=>{
+//   if(updatedname){
+//     console.log("hhhhhh")
+//     fetch(`http://localhost/php-contact/backend/addcontact.php`, {
+//  method: 'POST',
+//  body: new URLSearchParams({ "name": firstname })})
+//  .then(response => {response.json()
+//                     console.log(response)  })
+//   .then(data => console.log(data)) 
+//   window.location.href="./profile.html"
+//   }
+// })
 
-/* adding photo to the tweet  */
-//waiting for the api
- /*function encodeImageFileAsURL(element){
-  let file=element.files[0]
-  let reader=new FileReader()
-  reader.onloadend=function(){
-  let addcontacts=(name)=> {
-                           fetch(`http://localhost/php-contact/backend/addcontact.php`, {
-                                method: 'POST',
-                                body: new URLSearchParams({ "name": name }),
-                                 }).then(response => {response.json()
-                                        console.log(response)  })
-                                    .then(data => console.log(data))
-                                       }
-                            addcontacts(reader.result)}
-                            addcontacts(reader.result)
-                            reader.readAsDataURL(file)}*/
-
-
-
-
- //$("#container").children('#name').each(function()
-//like event
 
 
 
