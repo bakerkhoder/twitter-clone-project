@@ -311,7 +311,7 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 
 })}
 */
-/* upload the image and the text of the tweet into the tweets table*/
+/* upload the image and the text of the tweet into the tweets table*/////NEWWWWWWWWWWWW
 
   const tweet_action=(data)=>{
   const tweet_image=document.getElementById("tweet_image")
@@ -323,18 +323,14 @@ fetch(`http://localhost/php-contact/backend/addcontact.php`, {
 const readerr= convert_image_to_base64(tweet_image.files[0])
 readerr.addEventListener('load', () => {
 var tweet_image=readerr.result
-var content=data["content"]
-// fetch(`http://localhost/twitter-clone-project/backend/createtweet.php`, {
-//  method: 'POST',
-//  body: new URLSearchParams(data)})
-//  .then(response => {response.json()
-//                     console.log(response)  })
-//   .then(data => console.log(data))
+console.log(tweet_image)
+var content=data["tweet"]
+
 
 var formdata = new FormData();
 formdata.append("user_id",user.id);
-formdata.append("content", content);
-formdata.append("image",tweet_image);
+formdata.append("tweet", content);
+formdata.append("picture",tweet_image);
 var requestOptions = {
   method: 'POST',
   body: formdata,
@@ -350,11 +346,54 @@ fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestO
 
   tweetbutton.addEventListener("click",()=>{
   var tweet_content=inputtweettext.value
-  data["content"]=tweet_content
+  data["tweet"]=tweet_content
   tweet_action(data)
   // na2es nb3at lid kamen
  //window.location.href="./profile.html"
 })
+
+
+/////NEWWWWW PROFIILE UPDATEEE
+
+//   const edit_prof=(data)=>{
+//   const prof_img=document.getElementById("prof-img")
+//   const convert_image_to_base64 = (file) => {
+//   const reader = new FileReader()
+//   reader.readAsDataURL(file)
+//   return reader
+// }
+// const readerr= convert_image_to_base64(prof_img.files[0])
+// readerr.addEventListener('load', () => {
+// var prof_img=readerr.result
+// var content=data["content"]
+
+
+// var formdata = new FormData();
+// formdata.append("user_id",user.id);
+// formdata.append("content", content);
+// formdata.append("prof-image",prof_img);
+// var requestOptions = {
+//   method: 'POST',
+//   body: formdata,
+//   redirect: 'follow'
+// };
+
+// fetch("http://localhost/twitter-clone-project/backend/createtweet.php", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+//  })
+//   }
+
+//   tweetbutton.addEventListener("click",()=>{
+//   var tweet_content=inputtweettext.value
+//   data["content"]=tweet_content
+//   tweet_action(data)
+
+// })
+
+
+
 
 
 

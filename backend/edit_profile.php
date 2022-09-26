@@ -6,10 +6,12 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
 
-if (isset($_POST['user_id'])) {
-
-    $profile = isset($_POST['picture']) ? $_POST['picture'] : '';
-
+if (isset($_POST['id'])) {
+     $id =($_POST['id']);
+     $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+     $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
+     $profile= isset($_POST['prof_image']) ? $_POST['prof_image'] : '';
+      
 
     $profile_path = '';
     if ($profile != '') {
@@ -17,18 +19,26 @@ if (isset($_POST['user_id'])) {
         $profile_path = $profile_img_data['db_save'];
     }
 
- $userId =($_POST['user_id']);
- $tweet =($_POST['tweet']);
+
+
+
 
 
 // create a query to insert a tweet post into databse
-$query = $mysqli->prepare("INSERT INTO tweets(user_id,tweet,picture) VALUES (?,?,?)");
-$query->bind_param('iss', $userId, $tweet, $profile_path);
-$query->execute();
+
+
+$edit_user_sql = "UPDATE users SET `first_name` = ?, `dob` = ?, `prof_image` = ? WHERE `id` = ?";
+$edit_user_stmt = $mysqli->prepare($edit_user_sql);
+$edit_user_stmt->bind_param('sssi', $first_name,$dob, $profile_path, $id);
+$edit_user_result = $edit_user_stmt->execute();
 $response = [];
+
+echo $id;
 $response["success"] = true;
 echo json_encode($response);}
-  if ($profile != '') {
+ if ($profile != '') {
             file_put_contents($profile_img_data['folder_save'], $profile_img_data['base64string']); //add image to the folder
-        }
+      }
 ?>
+
+
