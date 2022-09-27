@@ -197,8 +197,15 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
 //  }
   
    //like feature 
+   var is_clicked=false
    likee.addEventListener('click', () => { 
-  
+    is_clicked=!(is_clicked)
+   if(is_clicked){
+      likee.src="./images/liked.png"
+   }
+   else{
+      likee.src="./images/like.png"
+   }
     var data = new FormData();
     
     var formdata = new FormData();
@@ -213,18 +220,17 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
 
 fetch("http://localhost/twitter-clone-project/backend/like_tweet.php", requestOptions)
   .then(response => response.text())
-  .then(result => {console.log(JSON.parse(result))
-                   nbr.textContent=JSON.parse(result).success
-                    if(JSON.parse(result).success==0){
-                         likee.src="./images/like.png"}
-                    else{likee.src="./images/liked.png"}})
+  .then(result => { 
+                    console.log(JSON.parse(result))
+                    nbr.textContent=JSON.parse(result).success
+                   })
   .catch(error => console.log('error', error));
      })
    }
 
 //display all the lsit of tweets
 
-   function displayLoop(num) {
+  function displayLoop(num) {
   for (let i = 0; i < num; i++) {
     fetch(`http://localhost/twitter-clone-project/backend/get_all_tweets.php`)
       .then((res) => res.json())
@@ -479,7 +485,7 @@ searchuser.addEventListener("keypress",(e)=>{
         .then(response => response.text())
         .then(result => {console.log(JSON.parse(result))
          usernames=JSON.parse(result)[0].first_name
-         emails=JSON.parse(result)[0].email
+         emails="@"+JSON.parse(result)[0].first_name
          let  deleteditems=document.getElementsByClassName("maybeknow")
          for(var i=0;i<deleteditems.length;i++){
          deleteditems[i].style.display="none"
@@ -491,7 +497,10 @@ searchuser.addEventListener("keypress",(e)=>{
    let image=document.createElement("img")
     maybeknow.appendChild(image)
     //image.src=image
-    image.src="./images/hero.png"
+    if(JSON.parse(result)[0].prof_image){
+         image.src=JSON.parse(result)[0].prof_image
+    }
+    else{image.src="./images/prof.png"}
     let container=document.createElement("div")
     maybeknow.appendChild(container)
     container.classList.add("usr")

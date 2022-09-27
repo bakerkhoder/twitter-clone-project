@@ -9,15 +9,15 @@ require('functions.php');
 $firstname = $_POST['first_name'];
 //query to give the results of search 
 if(isset($firstname)){
-$query = $mysqli->prepare("SELECT first_name,email FROM users where first_name ='{$firstname}'limit 1");
+$query = $mysqli->prepare("SELECT first_name,prof_image FROM users where first_name ='{$firstname}'limit 1");
 
 $query->execute();
 $array = $query->get_result();
-
 $response = [];
 
 while ($a = $array->fetch_assoc()) {
-    $response[] = $a;
+    $response[]=$a;
+ 
 }
 
 $json = json_encode($response);
