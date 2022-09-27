@@ -47,7 +47,10 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
         email.innerHTML=userInfo.email
         date.innerHTML=userInfo.dob
      //   console.log(userInfo.profimage)
-        image.src="./"+userInfo.prof_image
+     if(userInfo.prof_image){
+       image.src="./"+userInfo.prof_image
+     }
+       else{ image.src="./images/prof.png"}
         updateddate.value=userInfo.dob
         updatedname.value=userInfo.first_name
        // image.src=data.image  waiting for the api
@@ -174,7 +177,7 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
   if (profile_image_path) {
    profimage.src = `./${profile_image_path}`
   } else {
-    // profimage.src = '../assets/svg/ui-user-profile.svg'  7et sura tenyiii
+      profimage.src = './images/prof.png' 
   }
   //for username and email
   username.textContent=name
@@ -193,10 +196,9 @@ fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
 
 //  }
   
+   //like feature 
    likee.addEventListener('click', () => { 
   
-    console.log(user_id);
-    console.log(tweet_id)
     var data = new FormData();
     
     var formdata = new FormData();
@@ -243,98 +245,130 @@ fetch("http://localhost/twitter-clone-project/backend/like_tweet.php", requestOp
 }
 
 
+
+
 fetch(`http://localhost/twitter-clone-project/backend/get_all_tweets.php`)
   .then((res) => res.json())
-  .then((data) => displayLoop(data.num))
+  .then((data) => {displayLoop(data.num)
+    console.log(data)})
 
 
 
 
-/*fetching people you may know and creating their cards*/
 
-const fetchmayknow=()=>{fetch('http://localhost/twitter-clone-project/backend/displaypeople.php')
-.then((response) => response.json())
-//                             user
-.then((data) => {data.forEach((people)=>{
-    let suggestions=document.querySelector(".suggestions")
+
+function createProfileToFollow(user_id, name, username, profile_img) {
+ 
+  let suggestions=document.querySelector(".suggestions")
+
     let maybeknow=document.createElement("div")
     suggestions.appendChild(maybeknow)
     maybeknow.classList.add("maybeknow")
+
     let image=document.createElement("img")
     maybeknow.appendChild(image)
-    image.src="./images/prof.avif"
+    
     let container=document.createElement("div")
     maybeknow.appendChild(container)
     container.classList.add("usr")
-    let username=document.createElement("div")
-    container.appendChild(username)
-    /*username.textcontent=name */
-    username.textContent=people.first_name
+
+    let username_may_now=document.createElement("div")
+    container.appendChild(username_may_now)
+    
     let email=document.createElement("div")
     container.appendChild(email)
     email.classList.add("email")
-    email.textContent=people.email
+    
     let buttoncntainer=document.createElement("div")
     maybeknow.appendChild(buttoncntainer)
+
     let followbutton=document.createElement("button")
     buttoncntainer.appendChild(followbutton)
     followbutton.classList.add("btn")
     followbutton.classList.add("btn-blue")
     followbutton.classList.add("black")
-    followbutton.textContent="follow"
-    var clicked =false
-    followbutton.addEventListener("click",()=>{
-  if(clicked==false){
-    followbutton.textContent="unfollow"
-    
-    clicked=true
-  //FTECH FOR SENDING EMAIL TO BE FOLLOWED 
-  //waiting for the api
-    //  var emailfollwed=people.email
-  //  var emailfollower=useremail
-  //  var data = new FormData();
-  //  data.append('emailfollow', emailfollower);
-  //  data.append('emailfollowed',emailfollwed );
-  //  fetch(`http://localhost/twitter-clone-project/backend/userinfo.php`,{
-  //        method:'POST',
-  //        body:data})
-  //       .then(response => response.text())
-  //       .then(result => {console.log(JSON.parse(result))})
+   
+     // INSERTING VALUES
 
-
-
-   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))
-   nbr.text content=(numer of likes from fetch method)   
-  this is for reseting the number of likes*/
-
-  
-  }
- else{
-  followbutton.textContent="follow"  
-  clicked=false
-  //waiting for the api
-  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
- method: 'POST',
- body: new URLSearchParams({ "name": currentusername })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))  this is for sending dislike to datbase*/
-
-   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))
-   nbr.text content=(numer of likes from fetch method)   
-  this is for reseting the number of likes*/
-  }})
-
-
+     //name of the user tf
+    username_may_now.textContent=name
+     //username of the utf
+     email.textContent=username
+     //prof image of the utf
+       if (profile_img) {
+         image.src = `./${profile_img}`}
+       else {image.src.src = './images/prof.png' }
      
-})})}
-fetchmayknow()
+
+      followbutton.innerHTML = 'Follow'
+   console.log("test")
+  followbutton.addEventListener('click', () => {
+    var formdata = new FormData();
+    formdata.append("user_id", user.id);
+    formdata.append("other_id", user_id);
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    // the follow feature
+    fetch("http://localhost/twitter-clone-project/backend/follow_user.php", requestOptions)
+   .then(response => response.text())
+   .then(result =>{ console.log(JSON.parse(result))
+     if (JSON.parse(result)) {
+          followbutton.textContent = JSON.parse(result).success
+
+          console.log(JSON.parse(result).success)
+        } else {
+          console.log(JSON.parse(result).error ? JSON.parse(result).error : JSON.parse(result).empty)
+        }
+  }
+   
+   )
+   .catch(error => console.log('error', error));
+  })
+
+
+
+}
+
+
+ 
+
+  function profilesToFollowLoop(data) {
+  for (let i = 0; i < data.length; i++) {
+    createProfileToFollow(
+      data[i].id,
+      data[i].first_name,
+      "@"+data[i].first_name,
+      data[i].prof_image
+      
+    )
+    
+  }
+}
+
+var formdata = new FormData();
+formdata.append("id",user.id);
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("http://localhost/twitter-clone-project/backend/get_random_users.php", requestOptions)
+  .then(response => response.text())
+  .then(result =>{ console.log(JSON.parse(result))
+          profilesToFollowLoop(JSON.parse(result))
+  })
+  .catch(error => console.log('error', error));
+
+ profilesToFollowLoop(data)
+
+
 
 /* upload the image and the text of the tweet into the tweets table*/////NEWWWWWWWWWWWW
 
@@ -516,63 +550,13 @@ searchuser.addEventListener("keypress",(e)=>{
   .then(data => console.log(data))
    nbr.text content=(numer of likes from fetch method)   
   this is for reseting the number of likes*/
-  }
-
-  
-  })
-        })
-
-   
-   fetchmayknow()
-
-    
-  }
-})
-
-/* edit profile */
-// const encodeinfandimgprof=(element)=>{
-//  savebtn.addEventListener("click",()=>{
-// let file=element.files[0]
-// let reader=new FileReader()
-//  let updatednamee=updatedname.value.split(" ")
-// let firstname=updatednamee[0]
-// let lastname=updatednamee[1]
-// reader.onloadend=function(){
-// function addcontacts(name) {
-// fetch(`http://localhost/php-contact/backend/addcontact.php`, {
-//   method: 'POST',//          
-//  body: new URLSearchParams({ "email":firstname,"name":name/*,"date":updateddate.value*/})})
-//  .then(response => {response.json()
-//                     console.log(response)  })
-//   .then(data => console.log(data)) }
-//   let base64= reader.result.split(",")
-//    addcontacts(base64[1])  
-//   console.log('test')
-//  }
-//  reader.readAsDataURL(file)
-
- 
- 
-//  window.location.href="./profile.html"
-// })}  
+  }}) }) }})
 
 
 
 
 
 
-// savebtn.addEventListener("click",()=>{
-//   if(updatedname){
-//     console.log("hhhhhh")
-//     fetch(`http://localhost/php-contact/backend/addcontact.php`, {
-//  method: 'POST',
-//  body: new URLSearchParams({ "name": firstname })})
-//  .then(response => {response.json()
-//                     console.log(response)  })
-//   .then(data => console.log(data)) 
-//   window.location.href="./profile.html"
-//   }
-// })
 
 
 
