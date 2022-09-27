@@ -519,47 +519,7 @@ searchuser.addEventListener("keypress",(e)=>{
     followbutton.classList.add("black")
     followbutton.textContent="follow"
     
-    var clicked =false
-    followbutton.addEventListener("click",()=>{
-  if(clicked==false){
-    followbutton.textContent="unfollow"
-    console.log("true")
-    clicked=true
-    //waiting for the api
- /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
- method: 'POST',
- body: new URLSearchParams({ "name": currentusername })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))  this is for sending that i am following this user to datbase*/
-
-   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))
-   nbr.text content=(numer of likes from fetch method)   
-  this is for reseting the number of likes*/
-
-  
-  }
- else{
-  followbutton.textContent="follow"  
-  clicked=false
-  //waiting for the api
-  /*    fetch(`http://localhost/php-contact/backend/addcontact.php` , {
- method: 'POST',
- body: new URLSearchParams({ "name": currentusername })})
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))  this is for sending dislike to datbase*/
-
-   /*    fetch(`http://localhost/php-contact/backend/addcontact.php`)
- .then(response => {response.json()
-                    console.log(response)  })
-  .then(data => console.log(data))
-   nbr.text content=(numer of likes from fetch method)   
-  this is for reseting the number of likes*/
-  }}) }) }})
+ }) }})
 
 
 
